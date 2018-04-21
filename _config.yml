@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: 大玉米de农场
+title: 大玉米de博客
 email: edwardw@qq.com
 description: >- # this means to ignore newlines until "baseurl:"
   代码 | 游戏 | 吃饭
@@ -29,6 +29,7 @@ plugins:
   - jekyll-feed
 timezone: Asia/Shanghai
 author: Edward
+show_excerpts: true
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
