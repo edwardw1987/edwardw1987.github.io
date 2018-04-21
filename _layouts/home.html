@@ -9,7 +9,9 @@ layout: default
           {%- assign date_format = site.minima.date_format | default: "%m/%d/%Y" -%}
         <article class="am-g blog-entry-article">
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img" style="max-height: 300px; overflow: hidden;">
-                <img src="{{ post.cover | default: '/assets/img/corn.png' | relative_url }}" alt="{{ post.title }}">
+                <a href="{{ post.url }}">                
+                  <img src="{{ post.cover | default: '/assets/img/corn.png' | relative_url }}" alt="{{ post.title }}" title="{{ post.title }}">
+                </a>
             </div>
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                 <span><a href="" class="blog-color">article &nbsp;</a></span>
@@ -56,11 +58,7 @@ layout: default
         <div class="blog-sidebar-widget blog-bor">
             <h2 class="blog-text-center blog-title"><span>Contact ME</span></h2>
             <p>
-                <a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
-                <a href=""><span class="am-icon-github am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-weibo am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-reddit am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-weixin am-icon-fw blog-icon"></span></a>
+                <a href="https://github.com/{{ site.github_username| cgi_escape | escape }}" target="_blank"><span class="am-icon-github am-icon-fw blog-icon"></span></a>
             </p>
         </div>
         <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">
