@@ -9,17 +9,15 @@ id: resume
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>resume</title>
+    <title>{{ page.title }}</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link href="https://cdn.bootcss.com/amazeui/2.4.2/css/amazeui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/css/resume.css' | relative_url }}">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ '/assets/js/app.js' | relative_url }}"></script>
 </head>
 <body class="curtain">
-    <audio controls autoplay hidden loop>
-      <source src="{{ '/assets/bgm/bgm.mp3' | relative_url }}" type="audio/mpeg">
-    </audio>
     <div class="jumbotron text-center">
         <div class="container">
           <h1 id="introduce"></h1>
@@ -27,7 +25,16 @@ id: resume
     </div>
       <div id="cont" class="container">
         <div class="page-header">
-          <h1>Self-introduce <small>自我介绍</small></h1>
+            <div class="row">
+                <div class="col-md-8">
+                  <h1>Self-introduce <small>自我介绍</small>
+                  </h1>                    
+                </div>
+                <div class="col-md-4">
+                    <a id="go-home" class="pull-right" href="/">回到首页</a>
+                </div>
+            </div>
+
         </div>
         <div class="row">
           <ul class="t_nav col-md-3">
@@ -77,11 +84,9 @@ id: resume
         </div>
         
       </div>
-
-<script>
-    $(function(){
-        
-    })
-</script>
+<!--     <audio controls autoplay hidden loop>
+      <source src="{{ '/assets/bgm/bgm.mp3' | relative_url }}" type="audio/mpeg">
+    </audio>
+ -->
 </body>
 </html>

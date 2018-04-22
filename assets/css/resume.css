@@ -4,6 +4,21 @@
     outline: 0;
     color:#66cccc;
 }
+a {
+    color: #66cccc;
+    margin:0;
+}
+a#go-home, 
+a#go-home:focus, 
+a#go-home:hover{
+    font-size: .1em;
+    color: white;
+    text-decoration: none;
+}
+a#go-home:hover {
+    color: #66cccc;
+    /*background: #66cccc;*/
+}
 .jumbotron,
 #introduce,
 #introduce small,
