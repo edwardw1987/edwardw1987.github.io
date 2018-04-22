@@ -1,86 +1,49 @@
 ---
 layout: default
 ---
-
-<div class="am-g am-g-fixed blog-fixed">
-    <div class="am-u-md-8 am-u-sm-12">
-        {% if site.posts.size > 0 %}
-        {%- for post in site.posts -%}
-          {%- assign date_format = site.minima.date_format | default: "%m/%d/%Y" -%}
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img" style="max-height: 300px; overflow: hidden;">
-                <a href="{{ post.url }}">                
-                  <img src="{{ post.cover | default: '/assets/img/corn.png' | relative_url }}" alt="{{ post.title }}" title="{{ post.title }}">
-                </a>
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article &nbsp;</a></span>
-                <span> @amazeUI &nbsp;</span>
-                <span>{{ post.date | date: date_format }}</span>
-                <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-                <!-- <p>{{ post.excerpt }}</p> -->
-                <p><a href="" class="blog-continue">continue reading</a></p>
-            </div>
-        </article>
-        {% endfor %}
-        
-        <ul class="am-pagination">
-          <li class="am-pagination-prev"><a href="">&laquo; Prev</a></li>
-          <li class="am-pagination-next"><a href="">Next &raquo;</a></li>
-        </ul>
-        {% endif %}
-    </div>
-
-    <div class="am-u-md-4 am-u-sm-12 blog-sidebar">
-        <div class="blog-sidebar-widget blog-bor">
-            <h2 class="blog-text-center blog-title"><span>About ME</span></h2>
-            <img src="{{ '/assets/img/corn.png' | relative_url }}" alt="about me" class="blog-entry-img" >
-            <p>
-              
-            我是一个辛勤耕耘的码农。
-            </p>
-            <p>
-              
-            日出而作，日落不息。
-            </p>
-            <p>
-              
-            生命不息，折腾不止。
-            </p>
-            <p>
-              
-            我选择的命运，命运也选择了我。
-            </p>
-            <p>
-            我就是我，不一样的玉米。
-            </p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-sm-12 col-md-offset-1">        
+            {% if site.posts.size > 0 %}
+            {%- for post in site.posts -%}
+              {%- assign date_format = site.minima.date_format | default: "%m/%d/%Y" -%}
+            <article class="am-g blog-entry-article">
+                <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img" style="max-height: 300px; overflow: hidden;">
+                    <a href="{{ post.url }}">                
+                      <img src="{{ post.cover | default: '/assets/img/corn.png' | relative_url }}" alt="{{ post.title }}" title="{{ post.title }}">
+                    </a>
+                </div>
+                <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                    <span><a href="" class="blog-color">article &nbsp;</a></span>
+                    <span> @amazeUI &nbsp;</span>
+                    <span>{{ post.date | date: date_format }}</span>
+                    <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+                    <!-- <p>{{ post.excerpt }}</p> -->
+                </div>
+            </article>
+            {% endfor %}
+            {% endif %}
         </div>
-        <div class="blog-sidebar-widget blog-bor">
-            <h2 class="blog-text-center blog-title"><span>Contact ME</span></h2>
-            <p>
-                <a href="https://github.com/{{ site.github_username| cgi_escape | escape }}" target="_blank"><span class="am-icon-github am-icon-fw blog-icon"></span></a>
-            </p>
-        </div>
-        <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">
-            <h2 class="blog-title"><span>TAG cloud</span></h2>
-            <div class="am-u-sm-12 blog-clear-padding">
-            <a href="" class="blog-tag">amaze</a>
-            <a href="" class="blog-tag">妹纸 UI</a>
-            <a href="" class="blog-tag">HTML5</a>
-            <a href="" class="blog-tag">这是标签</a>
-            <a href="" class="blog-tag">Impossible</a>
-            <a href="" class="blog-tag">开源前端框架</a>
-            </div>
-        </div>
-        <div class="blog-sidebar-widget blog-bor">
-            <h2 class="blog-title"><span>么么哒</span></h2>
-            <ul class="am-list">
-                <li><a href="#">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a></li>
-                <li><a href="#">我把最深沉的秘密放在那里。</a></li>
-                <li><a href="#">你不懂我，我不怪你。</a></li>
-                <li><a href="#">每个人都有一道伤口， 或深或浅，盖上布，以为不存在。</a></li>
-            </ul>
+        <div class="col-md-3">
+            <div class="jumbotron" id="about-me">
+                <div class="pull-left">                    
+                    <img src="{{ '/assets/img/corn.png' | relative_url }}" width="50%" alt="corn">
+                    <span id="title">博主简介</span>
+                </div>
+                        <p>
+                          
+                        我是一个辛勤耕耘的码农。<br>
+                          
+                        日出而作，日落不息。<br>
+                          
+                        生命不息，折腾不止。<br>
+                          
+                        我选择的命运，命运也选择了我。<br>
+                        我就是我，不一样的玉米。<br>
+                </div>
+                </p>
+            </div>       
         </div>
     </div>
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
 </div>
+<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>

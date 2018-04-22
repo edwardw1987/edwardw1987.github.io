@@ -1,0 +1,19 @@
+/*
+* @Author: edward
+* @Date:   2018-04-22 14:18:37
+* @Last Modified by:   edward
+* @Last Modified time: 2018-04-22 15:15:21
+*/
+#blog-nav {
+}
+#about-me p {
+    font-size: 1rem;
+}
+
+#about-me #title {
+    font-size: 2rem;
+}
+
+#about-me img {
+    margin-left: -50px;
+}
