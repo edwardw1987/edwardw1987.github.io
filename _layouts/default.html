@@ -6,9 +6,10 @@
   <body>
 
     {%- include header.html -%}
-    <div style="padding-top: 50px;">
-      {{ content }}
-    </div>
+    <hr>
+    {%- include nav.html -%}
+    <hr>
+    {{ content }}
     {%- include footer.html -%}
     {% include scripts.html %}
   </body>
