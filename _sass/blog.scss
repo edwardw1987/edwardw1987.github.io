@@ -1,6 +1,24 @@
-/*
-* @Author: edward
-* @Date:   2018-04-21 20:03:05
-* @Last Modified by:   edward
-* @Last Modified time: 2018-04-21 20:03:27
-*/
+body {
+    background-color: rgb(240,240,200);
+    font-size: 12px;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+$color: rgb(240,120, 0);
+.blog-nav li a:hover,{
+    background: transparent;
+    color:$color;
+}
+
+.am-topbar-nav>li.am-active>a,
+.am-topbar-nav>li.am-active>a:focus,
+.am-topbar-nav>li.am-active>a:hover {
+    border-radius: 0;
+    color: $color;
+    background: 0 0;
+    text-align:center;
+    cursor: pointer;
+}
