@@ -240,10 +240,6 @@ a {
     padding:0 1.3rem;
 }
 
-.blog-nav li a:hover{
-    background-color:#fff;
-    color:#10D07A;
-}
 .blog-button {
     width:95%;
     height:100%;
@@ -262,12 +258,7 @@ a {
 .blog-bor {
     border:1px solid #e5e5e5;
 }
-.am-topbar-nav>li.am-active>a, .am-topbar-nav>li.am-active>a:focus, .am-topbar-nav>li.am-active>a:hover {
-    border-radius: 0;
-    color: #10D07A;
-    background: 0 0;
-    text-align:center;
-}
+
 .am-topbar-nav>li>a:hover:after {
      opacity: 0; 
 }
