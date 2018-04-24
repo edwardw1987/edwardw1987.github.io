@@ -35,4 +35,4 @@ id: about
         </p>
     </div>
 </div>
-![Markdown]({{ "/assets/img/bigcorn_avatar.jpg" | relative_url }})
+![Markdown](/assets/img/corn_avatar.jpg)
