@@ -8,6 +8,7 @@
         speed: null,
         hasplay: false,
         btnActiveClass: null,
+        stay: null,
         init(config){
             var self = banner;
             self.imageSlot = $(config.imageSlot.selector || ".img-slot");
@@ -15,12 +16,9 @@
             self.direction = config.direction ? config.direction : "h";
             self.speed = config.speed ? config.speed : "normal";
             self.btnActiveClass = config.buttonSlot.btnActiveClass ? config.buttonSlot.btnActiveClass : "active";
-
+            self.stay = config.stay ? config.stay : 3000;
             $imageSlot = self.imageSlot;
             $buttonSlot = self.buttonSlot;
-            var curIndex = 0;
-            var interval;
-            var stay = 3000;
 
             config.imageSlot.images.forEach((i) => {
                 $imageSlot.append(
@@ -37,52 +35,54 @@
             //extra image for smooth transition;
             $imageSlot.append(imgs.eq(0).clone());
             imgs = $imageSlot.children("a");//update
-
-
-            //
-            function stop(){
-                clearInterval(interval);
-                self.hasplay = false;
-            }
-            function play(fn){
-                if (self.hasplay) return;
-                interval = setInterval(function(){
-                    self.curIndex += 1;
-                    fn();
-
-                },stay);
-                self.hasplay = true;
-            }
             //init
             var doAnimateX = self.doAnimateX,
                 doAnimateY = self.doAnimateY
             ;
             switch (self.direction){
                 case "h":
-                    $imageSlot.css("width",$imageSlot.width()*imgs.length);// init $imageSlot's width
-                    btns.on("click",function(){
-                        self.curIndex = $(this).index();
-                        doAnimateX();
-                    });
+                    $imageSlot.css("width", $imageSlot.width()*imgs.length);// init $imageSlot's width
+                    self._onClickBtn(doAnimateX)
                     $imageSlot.hover(
-                        stop,
-                        function(){play(doAnimateX);}
+                        self.stop,
+                        function(){self.play(doAnimateX);}
                     );
-                    play(doAnimateX);
+                    self.play(doAnimateX);
                     break;
                 case "v":
-                    btns.on("click",function(){
-                        self.curIndex = $(this).index();
-                        doAnimateY();
-                    });
+                    self._onClickBtn(doAnimateY)
                     $imageSlot.hover(
-                        stop,
-                        function(){play(doAnimateY);}
+                        self.stop,
+                        function(){self.play(doAnimateY);}
                     );
-                    play(doAnimateY);
+                    self.play(doAnimateY);
                     break;
             }
             
+        },
+        _onClickBtn(callback){
+            var self = banner;
+            var btns = self.buttonSlot.children();
+            btns.on("click",function(){
+                self.curIndex = $(this).index();
+                callback();
+                self.stop();
+                self.play(callback)
+            });
+        },
+        play(fn){
+            var self = banner;
+            if (self.hasplay) return;
+            self.interval = setInterval(function(){
+                self.curIndex += 1;
+                fn();
+            }, self.stay);
+            self.hasplay = true;
+        },
+        stop(){
+            var self = banner;
+            clearInterval(self.interval);
+            self.hasplay = false;
         },
         _doAnimate(config, callback){
             var self = banner,
