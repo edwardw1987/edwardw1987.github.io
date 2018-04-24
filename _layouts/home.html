@@ -3,8 +3,10 @@ layout: default
 ---
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2 col-sm-12"></div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-4 col-sm-12">
+            {% include banner.html %}
+        </div>
+        <div class="col-md-8 col-sm-12">
             {% if site.posts.size > 0 %}
             {%- for post in site.posts -%}
             {%- assign date_format = site.minima.date_format | default: "%m/%d/%Y" -%}
@@ -23,9 +25,6 @@ layout: default
             {% endfor %}
             {% endif %}
             <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-        </div>
-        <div class="col-md-4 col-sm-12">
-            {% include banner.html %}            
         </div>
     </div>
 </div>
