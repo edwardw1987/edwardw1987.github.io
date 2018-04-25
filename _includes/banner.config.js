@@ -1,11 +1,11 @@
-$(function(){
-    //        垂直移动v 水平移动h
-    $(".banner").BigCornSlider({
+/*common slider banner config options*/
+var banner = {
+    config: {
         imageSlot: {
             selector: ".slot", // default => `.img-slot`             
             images: [
-                "assets/img/lunch_1.jpg",
-                "assets/img/lunch_2.jpg",
+                "/assets/img/lunch_1.jpg",
+                "/assets/img/lunch_2.jpg",
                 "http://i2.bvimg.com/642349/284476fd0da91d0a.jpg",
                 "http://i2.bvimg.com/642349/bf5d16434897b6d1.jpg",
                 "http://i2.bvimg.com/642349/e4afe4ff4b43bcf1.jpg",
@@ -19,5 +19,5 @@ $(function(){
         },
              // defaults
         direction: "h",
-    });
-})
+    }
+}

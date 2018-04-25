@@ -1,0 +1,14 @@
+<div class="banner" id="banner-v-1">
+    <div class="slot"></div>
+    <div class="mask mask-v-right"></div>
+    <div class="mask mask-h-bottom"></div>
+    <div class="btn-slot btn-slot-v btn-slot-top-right"></div>
+</div>
+<script>
+    $(function(){
+        $("#banner-v-1").BigCornSlider(
+            Object.assign(
+                {}, banner.config, {direction: "v"}
+            ));
+    })
+</script>

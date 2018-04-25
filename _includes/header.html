@@ -35,6 +35,17 @@
               {%- endif -%}
             {% endfor -%}
             {% endif %}
+
+            <li class="dropdown bigcorn">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">项目 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                {% for item in site.projects %}
+                <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+                {% endfor %}
+                <!-- <li role="separator" class="divider"></li> -->
+              </ul>
+            </li>
+
           </ul>
           <form class="navbar-form navbar-right">
             <div class="form-group">

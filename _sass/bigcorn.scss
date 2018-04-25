@@ -41,6 +41,10 @@ a, a:hover{
         }
     }
 }
+.dropdown.open.bigcorn>a:focus{
+    color: #fff;
+    background-color: $color;
+}
 /* footer */
 footer {
     padding:3rem 0 2rem 0;
