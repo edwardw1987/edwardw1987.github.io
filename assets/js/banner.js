@@ -18,6 +18,6 @@ $(function(){
             btnActiveClass: "highlight",
         },
              // defaults
-        direction: "v",
+        direction: "h",
     });
 })
