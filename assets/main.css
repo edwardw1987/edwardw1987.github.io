@@ -186,6 +186,10 @@ a, a:hover {
   .navbar.bigcorn ul li a:hover {
     color: #54bca6; }
 
+.dropdown.open.bigcorn > a:focus {
+  color: #fff;
+  background-color: #54bca6; }
+
 /* footer */
 footer {
   padding: 3rem 0 2rem 0;
@@ -220,6 +224,10 @@ a, a:hover {
     transition: color .2s; }
   .navbar.bigcorn ul li a:hover {
     color: #54bca6; }
+
+.dropdown.open.bigcorn > a:focus {
+  color: #fff;
+  background-color: #54bca6; }
 
 /* footer */
 footer {

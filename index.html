@@ -20,7 +20,35 @@
 {"name":"BigCorn","description":"代码 游戏 吃饭","author":{"@type":"Person","name":"Edward"},"@type":"WebSite","url":"http://localhost:4000/","headline":"BigCorn","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="BigCorn" /></head>
-<body><header>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.bigcorn.slider.js"></script>
+<script>/*common slider banner config options*/
+var banner = {
+    config: {
+        imageSlot: {
+            selector: ".slot", // default => `.img-slot`             
+            images: [
+                "/assets/img/lunch_1.jpg",
+                "/assets/img/lunch_2.jpg",
+                "http://i2.bvimg.com/642349/284476fd0da91d0a.jpg",
+                "http://i2.bvimg.com/642349/bf5d16434897b6d1.jpg",
+                "http://i2.bvimg.com/642349/e4afe4ff4b43bcf1.jpg",
+                "http://i2.bvimg.com/642349/e7f50c4a86c84aa9.jpg",
+                "http://i2.bvimg.com/642349/fa31a3708ba844a9.jpg",
+            ]
+        },
+        buttonSlot: {
+            selector: ".btn-slot", //default value
+            btnActiveClass: "highlight",
+        },
+             // defaults
+        direction: "h",
+    }
+}
+</script>
+
+  <body><header>
     <nav class="navbar navbar-default bigcorn">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -44,6 +72,17 @@
               <a href="/about">关于我</a>
               
               </li>
+
+            <li class="dropdown bigcorn">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">项目 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                
+                <li><a href="/projects/bigcorn.slider.html">jquery.bigcorn.slider</a></li>
+                
+                <!-- <li role="separator" class="divider"></li> -->
+              </ul>
+            </li>
+
           </ul>
           <form class="navbar-form navbar-right">
             <div class="form-group">
@@ -56,12 +95,19 @@
 </header><div class="container-fluid">
     <div class="row">
         <div class="col-md-4 col-sm-12">
-            <div class="banner">
+            <div class="banner" id="banner-h-1">
     <div class="slot"></div>
     <div class="mask mask-v-right"></div>
     <div class="mask mask-h-bottom"></div>
-    <div class="btn-slot btn-slot-v btn-slot-top-right"></div>
+    <div class="btn-slot btn-slot-h btn-slot-bottom-right"></div>
 </div>
+
+<script>
+    $(function(){
+        $("#banner-h-1").BigCornSlider(banner.config);
+        console.log("banner-h-1");
+    })
+</script>
         </div>
         <div class="col-md-8 col-sm-12">
             <ul class="list-group">
@@ -112,10 +158,6 @@
   <footer>  
     <p class="blog-text-center">© 2018-2019 Bigcorn.cn All Right Reserved.</p>
     
-  </footer><script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="/assets/js/jquery.bigcorn.slider.js"></script>
-<script src="/assets/js/banner.js"></script>
-  </body>
+  </footer></body>
 
 </html>
