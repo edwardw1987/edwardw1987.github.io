@@ -1,0 +1,12 @@
+{% assign bannerId = 'banner-3' %}
+
+<div class="banner" id="{{ bannerId }}">
+    <div class="slot"></div>
+    <div class="mask mask-bottom"></div>
+    <div class="btn-slot btn-slot-bottom-center"></div>
+</div>
+<script>
+    $(function(){
+        $("#{{ bannerId }}").BigCornSlider(banner.config);
+    })
+</script>

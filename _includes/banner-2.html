@@ -1,12 +1,14 @@
-<div class="banner" id="banner-v-1">
+{% assign bannerId = 'banner-2' %}
+
+<div class="banner" id="{{ bannerId }}">
     <div class="slot"></div>
-    <div class="mask mask-v-right"></div>
-    <div class="mask mask-h-bottom"></div>
+    <div class="mask mask-right"></div>
+    <div class="mask mask-bottom"></div>
     <div class="btn-slot btn-slot-v btn-slot-top-right"></div>
 </div>
 <script>
     $(function(){
-        $("#banner-v-1").BigCornSlider(
+        $("#{{ bannerId }}").BigCornSlider(
             Object.assign(
                 {}, banner.config, {direction: "v"}
             ));
