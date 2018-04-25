@@ -268,22 +268,22 @@ footer {
   opacity: .4;
   filter: alpha(opacity=40); }
 
-.mask-h-top {
+.mask-top {
   width: 100%;
   height: 40px;
   top: 0; }
 
-.mask-h-bottom {
+.mask-bottom {
   width: 100%;
   height: 40px;
   bottom: 0; }
 
-.mask-v-left {
+.mask-left {
   width: 40px;
   height: 100%;
   left: 0; }
 
-.mask-v-right {
+.mask-right {
   width: 40px;
   height: 100%;
   right: 0; }
