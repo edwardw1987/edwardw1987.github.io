@@ -46,3 +46,12 @@ exclude:
   - vendor/ruby/
   - utils/
   - material/
+defaults:
+  - scope:
+      path: "assets/js"
+    values:
+      js: true
+  - scope:
+      path: "assets/css"
+    values:
+      css: true
