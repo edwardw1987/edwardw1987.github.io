@@ -18,11 +18,12 @@ $banner-width: 100%;
         width: $banner-width;
         background: #111;
         float: left;
+        overflow: hidden;
         img{
             height: 100%;
+            border: none;
             margin-left: 50%;
             transform: translate3d(-50%, 0, 0);
-            border: none;
         }
     }
 }

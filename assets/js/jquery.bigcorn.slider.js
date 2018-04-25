@@ -25,7 +25,6 @@
                     "<a href='javascript:;'><img src='" + i + "'></a>")
             }) 
             var imgs = $imageSlot.children("a");
-            console.log(imgs.length)
             //create buttons
             for (var i = 0; i < imgs.length; i++) {
                 $buttonSlot.append("<a href='javascript:;'>" + (i + 1) + "</a>");
@@ -41,7 +40,13 @@
             ;
             switch (self.direction){
                 case "h":
-                    $imageSlot.css("width", $imageSlot.width()*imgs.length);// init $imageSlot's width
+                    /* init image slot width */
+                    var orgWidth = $imageSlot.width();
+                    $imageSlot.css("width", orgWidth * imgs.length);
+                    /* init image width*/
+                    $imageSlot.children().css("width", orgWidth);
+
+                    console.log($imageSlot.children().length)
                     self._onClickBtn(doAnimateX)
                     $imageSlot.hover(
                         self.stop,
