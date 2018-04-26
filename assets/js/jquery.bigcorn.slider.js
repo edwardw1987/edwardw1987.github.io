@@ -89,20 +89,18 @@
                     var self = banner,
                         $imageSlot = self.imageSlot,
                         orgHeight = $imageSlot.height(),
-                        imgs = $imageSlot.children("a")
+                        imgs = $imageSlot.children("a").css("height", orgHeight)
                     ;
                     $imageSlot.css("height", orgHeight * imgs.length);
-                    $imageSlot.children().css("height", orgHeight);                                            
                 },
                 _initImageSlotWidth(direction){
                     /* init image (slot) width when direction is `left` or `right` */
                     var self = banner,
                         $imageSlot = self.imageSlot,
                         orgWidth = $imageSlot.width(),
-                        imgs = $imageSlot.children("a")
+                        imgs = $imageSlot.children("a").css("width", orgWidth)
                     ;
                     $imageSlot.css("width", orgWidth * imgs.length);
-                    $imageSlot.children().css("width", orgWidth);                        
                 },
                 _registerAnimate(theAnimate){
                     var self = banner,
