@@ -27,7 +27,7 @@
 
     <script src="/assets/js/app.js?v=20150906162259"></script>
 
-    <script src="/assets/js/jquery.bigcorn.slider.js?v=20180426102944"></script>
+    <script src="/assets/js/jquery.bigcorn.slider.js?v=20180426125452"></script>
 
 <script>/*common slider banner config options*/
 var banner = {
@@ -48,8 +48,6 @@ var banner = {
             selector: ".btn-slot", //default value
             btnActiveClass: "highlight",
         },
-             // defaults
-        direction: "h",
     }
 }
 </script>
@@ -103,17 +101,17 @@ var banner = {
         <div class="col-md-4 col-sm-12">
             
 
-<div class="banner" id="banner-1">
+<div class="banner" id="banner-left">
     <div class="slot"></div>
-    <div class="mask mask-right"></div>
     <div class="mask mask-bottom"></div>
     <div class="btn-slot btn-slot-bottom-right"></div>
 </div>
 
 <script>
     $(function(){
-        $("#banner-1").BigCornSlider(banner.config);
-    })
+        $("#banner-left").BigCornSlider(banner.config)
+        //default direction toward the `left`
+    }) 
 </script>
         </div>
         <div class="col-md-8 col-sm-12">

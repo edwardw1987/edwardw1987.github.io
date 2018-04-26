@@ -261,6 +261,14 @@ footer {
       margin-left: 50%;
       transform: translate3d(-50%, 0, 0); }
 
+.slot-right {
+  right: 0; }
+  .slot-right a {
+    float: right; }
+
+.slot-bottom {
+  bottom: 0; }
+
 /*mask*/
 .mask {
   position: absolute;
