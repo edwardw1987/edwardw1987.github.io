@@ -18,59 +18,104 @@
                     self.id = $this.attr('id');
                     self.imageSlot = $this.find(config.imageSlot.selector || ".img-slot");
                     self.buttonSlot = $this.find(config.buttonSlot.selector || ".btn-slot");
-                    self.direction = config.direction ? config.direction : "h";
+                    self.direction = config.direction ? config.direction : "left";
                     self.speed = config.speed ? config.speed : "normal";
                     self.btnActiveClass = config.buttonSlot.btnActiveClass ? config.buttonSlot.btnActiveClass : "active";
                     self.stay = config.stay ? config.stay : 3000;
-                    $imageSlot = self.imageSlot;
-                    $buttonSlot = self.buttonSlot;
+                    self.images = config.imageSlot.images || [];
 
-                    config.imageSlot.images.forEach((i) => {
-                        $imageSlot.append(
-                            "<a href='javascript:;'><img src='" + i + "'></a>")
-                    }) 
-                    var imgs = $imageSlot.children("a");
-                    //create buttons
-                    for (var i = 0; i < imgs.length; i++) {
-                        $buttonSlot.append("<a href='javascript:;'>" + (i + 1) + "</a>");
-                    }
-                    var btns = $buttonSlot.children();
-                    btns.eq(0).addClass(self.btnActiveClass);
-                    //extra image for smooth transition;
-                    $imageSlot.append(imgs.eq(0).clone());
-                    imgs = $imageSlot.children("a");//update
-                    //init
-                    var doAnimateX = self.doAnimateX,
-                        doAnimateY = self.doAnimateY
-                    ;
+                    self._handleImageSlotContent();
+
                     switch (self.direction){
-                        case "h":
-                            /* init image slot width */
-                            var orgWidth = $imageSlot.width();
-                            $imageSlot.css("width", orgWidth * imgs.length);
-                            /* init image width*/
-                            $imageSlot.children().css("width", orgWidth);
-
-                            console.log($imageSlot.children().length)
-                            self._onClickBtn(doAnimateX)
-                            $imageSlot.hover(
-                                self.stop,
-                                function(){self.play(doAnimateX);}
-                            );
-                            self._registerAnimate(doAnimateX);
+                        case "right":
+                            self._initOnDirectionRight();
+                            self._initImageSlotWidth();
+                            self._registerAnimate(self._doAnimateRight);
                             break;
-                        case "v":
-                            self._onClickBtn(doAnimateY)
-                            $imageSlot.hover(
-                                self.stop,
-                                function(){self.play(doAnimateY);}
-                            );
-                            self._registerAnimate(doAnimateY);
+                        case "top":
+                            self._initImageSlotHeight();
+                            self._registerAnimate(self._doAnimateTop);
+                            break;
+                        case "bottom":
+                            self._initOnDirectionBottom();
+                            self._initImageSlotHeight();
+                            self._registerAnimate(self._doAnimateBottom);
+                            break;
+                        default:
+                            self._initImageSlotWidth();
+                            self._registerAnimate(self._doAnimateDefault);
                             break;
                     }
                 },
-                _registerAnimate(theAnimate){
+                _initOnDirectionRight(){
                     var self = banner;
+                    self.imageSlot.css("right", 0)
+                        .children('a').css("float", "right")
+                    ;
+                },
+                _initOnDirectionBottom(){
+                    var self = banner;
+                    self.imageSlot.css("bottom", 0)
+
+                    ;
+                },
+                _handleImageSlotContent(){
+                    var self = banner,
+                        $imageSlot = self.imageSlot,
+                        $buttonSlot = self.buttonSlot;
+                    if (self.direction == "bottom"){
+                        for (var i = self.images.length - 1;i >= 0;i--){
+                            $imageSlot.append(
+                                "<a href='javascript:;'><img src='" + self.images[i] + "'></a>")
+                        }
+                        //extra image for smooth transition;
+                        $imageSlot.prepend($imageSlot.children("a").eq(-1).clone());
+                    }else{
+                        self.images.forEach((i) => {
+                            $imageSlot.append(
+                                "<a href='javascript:;'><img src='" + i + "'></a>")
+                        })                         
+                        //extra image for smooth transition;
+                        $imageSlot.append($imageSlot.children("a").eq(0).clone());
+                    }
+                    //create buttons
+                    for (var i = 0; i < self.images.length; i++) {
+                        $buttonSlot.append("<a href='javascript:;'>" + (i + 1) + "</a>");
+                    }
+                    $buttonSlot.children().eq(0).addClass(self.btnActiveClass);
+
+                },
+                _initImageSlotHeight(direction){
+                    var self = banner,
+                        $imageSlot = self.imageSlot,
+                        orgHeight = $imageSlot.height(),
+                        imgs = $imageSlot.children("a")
+                    ;
+                    $imageSlot.css("height", orgHeight * imgs.length);
+                    $imageSlot.children().css("height", orgHeight);                                            
+                },
+                _initImageSlotWidth(direction){
+                    /* init image (slot) width when direction is `left` or `right` */
+                    var self = banner,
+                        $imageSlot = self.imageSlot,
+                        orgWidth = $imageSlot.width(),
+                        imgs = $imageSlot.children("a")
+                    ;
+                    $imageSlot.css("width", orgWidth * imgs.length);
+                    $imageSlot.children().css("width", orgWidth);                        
+                },
+                _registerAnimate(theAnimate){
+                    var self = banner,
+                        $imageSlot = self.imageSlot
+                    ;
+
+                    self._onClickBtn(theAnimate);
+
+                    $imageSlot.hover(
+                        self.stop,
+                        function(){self.play(theAnimate);}
+                    );
+
                     $(window)
                         .on("blur", function(){
                             self.stop();
@@ -79,6 +124,7 @@
                             self.play(theAnimate);
                         })
                     ;
+
                     self.play(theAnimate);
 
                 },
@@ -131,8 +177,7 @@
                         }
                     )
                 },
-                doAnimateX(){
-                    //水平移动
+                _doAnimateDefault(){
                     var self = banner;
                     self._doAnimate({
                         left: function($imageSlot, curIndex){
@@ -146,17 +191,44 @@
                         self.changeButton();
                     })
                 },
-                doAnimateY(){
-                    //垂直
+                _doAnimateRight(){
+                    var self = banner;
+                    self._doAnimate({
+                        right: function($imageSlot, curIndex){
+                            return -($imageSlot.width() / $imageSlot.children().length * curIndex) + "px";
+                        }
+                    }, function($imageSlot, curIndex){
+                        if (curIndex == $imageSlot.children().length -1){
+                            self.curIndex = 0;
+                            $imageSlot.css("right", 0);
+                        }
+                        self.changeButton();
+                    })
+                },
+                _doAnimateTop(){
                     var self = banner;
                     self._doAnimate({
                         top: function($imageSlot, curIndex){
-                            return -$imageSlot.height() * curIndex + "px";
+                            return -($imageSlot.height() / $imageSlot.children().length * curIndex) + "px";
                         }
                     }, function($imageSlot, curIndex){
                         if (curIndex == $imageSlot.children().length - 1){
                             self.curIndex = 0;
                             $imageSlot.css("top",0);
+                        }
+                        self.changeButton();
+                    })
+                },
+                _doAnimateBottom(){
+                    var self = banner;
+                    self._doAnimate({
+                        bottom: function($imageSlot, curIndex){
+                            return -($imageSlot.height() / $imageSlot.children().length * curIndex) + "px";
+                        }
+                    }, function($imageSlot, curIndex){
+                        if (curIndex == $imageSlot.children().length - 1){
+                            self.curIndex = 0;
+                            $imageSlot.css("bottom",0);
                         }
                         self.changeButton();
                     })

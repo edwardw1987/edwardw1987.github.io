@@ -17,7 +17,5 @@ var banner = {
             selector: ".btn-slot", //default value
             btnActiveClass: "highlight",
         },
-             // defaults
-        direction: "h",
     }
 }
