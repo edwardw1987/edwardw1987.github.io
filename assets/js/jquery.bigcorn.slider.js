@@ -9,9 +9,11 @@
                 direction: null,
                 speed: null,
                 hasplay: false,
+                btnCommonClass: null,
                 btnActiveClass: null,
                 stay: null,
                 id: null,
+                showButtonNum: null,
                 init(config){
                     var self = banner;
                     if ($this.length == 0) return;
@@ -21,8 +23,10 @@
                     self.direction = config.direction ? config.direction : "left";
                     self.speed = config.speed ? config.speed : "normal";
                     self.btnActiveClass = config.buttonSlot.btnActiveClass ? config.buttonSlot.btnActiveClass : "active";
+                    self.btnCommonClass = config.buttonSlot.btnCommonClass ? config.buttonSlot.btnCommonClass : null;
                     self.stay = config.stay ? config.stay : 3000;
                     self.images = config.imageSlot.images || [];
+                    self.showButtonNum = config.buttonSlot.showNum ? config.buttonSlot.showNum : false;
 
                     self._handleImageSlotContent();
 
@@ -80,9 +84,13 @@
                     }
                     //create buttons
                     for (var i = 0; i < self.images.length; i++) {
-                        $buttonSlot.append("<a href='javascript:;'>" + (i + 1) + "</a>");
+                        $buttonSlot.append("<a href='javascript:;'>" + (self.showButtonNum === true? (i + 1) : '') + "</a>");
                     }
-                    $buttonSlot.children().eq(0).addClass(self.btnActiveClass);
+                    var btns = $buttonSlot.children();
+                    if (self.btnCommonClass !== null){
+                        btns.addClass(self.btnCommonClass);
+                    }
+                    btns.eq(0).addClass(self.btnActiveClass);
 
                 },
                 _initImageSlotHeight(direction){

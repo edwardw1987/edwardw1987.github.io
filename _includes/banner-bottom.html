@@ -9,7 +9,13 @@
     $(function(){
         $("#{{ bannerId }}").BigCornSlider(
             Object.assign(
-                {}, banner.config, {direction: "bottom"}
-            ));
+               {}, banner.config, {direction: "bottom", buttonSlot:{
+                   selector: ".btn-slot",
+                   btnActiveClass: "banner-bottom-active",
+                   btnCommonClass: "banner-bottom",
+                   showNum: true,
+               }}
+            )
+        )
     })
 </script>

@@ -63,27 +63,70 @@ $banner-width: 100%;
 // .btn-slot-bottom-center{bottom:0; transform: translate3d(-50%, 0, 0);}
 .btn-slot-top-left{top:0;left:0;}
 .btn-slot-top-right{top:0;right:0;}
-
-/*buttons*/
-.btn-slot a{
-    display: block;
-    float: left;
-    border: 2px solid;
-    width: 2rem;
-    height: 2rem;
-    line-height: 1.8rem;
-    margin:5px;
-    color:#eee;
-    background: $color;
-    text-align: center;
-    text-decoration: none;
-    -webkit-transition: opacity .3s;
-    opacity: .7;
-    filter:alpha(opacity=70);
-}
 .btn-slot.btn-slot-v a{clear: both;}
 .btn-slot.btn-slot-h a{float: left;}
-.btn-slot a.highlight{
-    opacity:1;
-    filter:alpha(opacity=100);
-}
+
+/*custom button styles*/
+.btn-slot {
+        @mixin base {
+            background-color: #ccc;
+            width: 1rem;
+            height: 1rem;
+            -webkit-transition: background-color .3s;
+        }
+        @mixin round{
+            border-radius: 2rem;
+            @include base;
+        }
+        @mixin square{
+            border: 1px solid;
+            @include base;
+        }
+        // banner-left
+        a.banner-left{
+            @include round;
+        }
+        a.banner-left-active{
+            background-color: $color !important;
+        }
+        // banner-right
+        a.banner-right{
+            @include square;
+        }
+        a.banner-right-active{
+            background-color: $color !important;
+        }
+        // banner-top
+        a.banner-top{
+            border: 2px solid;
+        }
+        a.banner-top-active{
+            background-color: $color !important;
+            opacity:1;
+            filter:alpha(opacity=100);
+        }
+        // banner-bottom
+        a.banner-bottom{
+            border: 2px solid;
+        }
+        a.banner-bottom-active{
+            background-color: $color !important;
+            opacity:1;
+            filter:alpha(opacity=100);
+        }
+        a{
+            display: block;
+            float: left;
+            width: 2rem;
+            height: 2rem;
+            line-height: 1.8rem;
+            margin:5px;
+            color:#eee;
+            background: $color;
+            text-align: center;
+            text-decoration: none;
+            -webkit-transition: opacity .3s;
+            opacity: .7;
+            filter:alpha(opacity=70);
+        }
+    }
