@@ -1,4 +1,6 @@
 $(function(){
+
+    return;
     $(".nav-pills li").on("click", function(){
         event.preventDefault();
         $(this).addClass('active').siblings().removeClass("active");

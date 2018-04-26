@@ -57,7 +57,7 @@
                                 self.stop,
                                 function(){self.play(doAnimateX);}
                             );
-                            self.play(doAnimateX);
+                            self._registerAnimate(doAnimateX);
                             break;
                         case "v":
                             self._onClickBtn(doAnimateY)
@@ -65,9 +65,22 @@
                                 self.stop,
                                 function(){self.play(doAnimateY);}
                             );
-                            self.play(doAnimateY);
+                            self._registerAnimate(doAnimateY);
                             break;
                     }
+                },
+                _registerAnimate(theAnimate){
+                    var self = banner;
+                    $(window)
+                        .on("blur", function(){
+                            self.stop();
+                        })
+                        .on("focus", function(){
+                            self.play(theAnimate);
+                        })
+                    ;
+                    self.play(theAnimate);
+
                 },
                 _onClickBtn(callback){
                     var self = banner;
