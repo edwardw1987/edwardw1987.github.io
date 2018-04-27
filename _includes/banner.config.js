@@ -1,6 +1,8 @@
 /*common slider banner config options*/
 var banner = {
     config: {
+        prevBtnSelector: ".btn-prev",
+        nextBtnSelector: ".btn-next",
         imageSlot: {
             selector: ".slot", // default => `.img-slot`             
             images: [

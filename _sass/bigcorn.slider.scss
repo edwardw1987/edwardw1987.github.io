@@ -8,125 +8,151 @@ $banner-width: 100%;
     // border: 15px solid #eee;
     overflow: hidden;
     position: relative;
-}
-.slot{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    a {
-        height:100%;
-        width: $banner-width;
-        background: #111;
-        float: left;
-        overflow: hidden;
-        img{
-            height: 100%;
-            border: none;
-            margin-left: 50%;
-            transform: translate3d(-50%, 0, 0);
+    .slot{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        a {
+            height:100%;
+            width: $banner-width;
+            background: #111;
+            float: left;
+            overflow: hidden;
+            img{
+                height: 100%;
+                border: none;
+                margin-left: 50%;
+                transform: translate3d(-50%, 0, 0);
+            }
         }
     }
-}
-.slot-right{
-    right: 0;
-    a{
-        float: right;
+    .slot-right{
+        right: 0;
+        a{
+            float: right;
+        }
     }
-}
-.slot-top{
-    // top: 0;
-}
-.slot-bottom{
-    bottom: 0;
-    // a{
-    //     float:right;
-    // }
+    .slot-top{
+        // top: 0;
+    }
+    .slot-bottom{
+        bottom: 0;
+    }
+    /*mask*/
+    .mask{
+        position: absolute;
+        background: #000;
+        opacity: .4;
+        filter:alpha(opacity=40);
+    }
+    .mask-top{width: 100%; height: 40px; top:0;}
+    .mask-bottom{width: 100%; height: 40px; bottom:0;}
+    .mask-left{width: 40px; height: 100%; left: 0;}
+    .mask-right{width: 40px; height: 100%; right: 0;}
+    /*btn-slot*/
+    .btn-slot{position: absolute; }
+    .btn-slot-bottom-left{bottom:0;left:0;}
+    .btn-slot-bottom-right{bottom:0;right: 0;}
+    // .btn-slot-bottom-center{bottom:0; transform: translate3d(-50%, 0, 0);}
+    .btn-slot-top-left{top:0;left:0;}
+    .btn-slot-top-right{top:0;right:0;}
+    .btn-slot.btn-slot-v a{clear: both;}
+    .btn-slot.btn-slot-h a{float: left;}
 
-}
-
-
-/*mask*/
-.mask{
-    position: absolute;
-    background: #000;
-    opacity: .4;
-    filter:alpha(opacity=40);
-}
-.mask-top{width: 100%; height: 40px; top:0;}
-.mask-bottom{width: 100%; height: 40px; bottom:0;}
-.mask-left{width: 40px; height: 100%; left: 0;}
-.mask-right{width: 40px; height: 100%; right: 0;}
-/*btn-slot*/
-.btn-slot{position: absolute; }
-.btn-slot-bottom-left{bottom:0;left:0;}
-.btn-slot-bottom-right{bottom:0;right: 0;}
-// .btn-slot-bottom-center{bottom:0; transform: translate3d(-50%, 0, 0);}
-.btn-slot-top-left{top:0;left:0;}
-.btn-slot-top-right{top:0;right:0;}
-.btn-slot.btn-slot-v a{clear: both;}
-.btn-slot.btn-slot-h a{float: left;}
-
-/*custom button styles*/
-.btn-slot {
-    @mixin base {
-        background-color: #ccc;
-        width: 1rem;
-        height: 1rem;
-        -webkit-transition: background-color .3s;
+    /*custom button styles*/
+    .btn-slot {
+        @mixin base {
+            background-color: #ccc;
+            width: 1rem;
+            height: 1rem;
+            -webkit-transition: background-color .3s;
+        }
+        @mixin round{
+            border-radius: 2rem;
+            @include base;
+        }
+        @mixin square{
+            border: 1px solid;
+            @include base;
+        }
+        // banner-left
+        a.banner-left{
+            @include round;
+        }
+        a.banner-left-active{
+            background-color: $color !important;
+        }
+        // banner-right
+        a.banner-right{
+            @include square;
+        }
+        a.banner-right-active{
+            background-color: $color !important;
+        }
+        // banner-top
+        a.banner-top{
+            border: 2px solid;
+        }
+        a.banner-top-active{
+            background-color: $color !important;
+            opacity:1;
+            filter:alpha(opacity=100);
+        }
+        // banner-bottom
+        a.banner-bottom{
+            border: 2px solid;
+        }
+        a.banner-bottom-active{
+            background-color: $color !important;
+            opacity:1;
+            filter:alpha(opacity=100);
+        }
+        a{
+            display: block;
+            float: left;
+            width: 2rem;
+            height: 2rem;
+            line-height: 1.8rem;
+            margin:5px;
+            color:#eee;
+            background: $color;
+            text-align: center;
+            text-decoration: none;
+            -webkit-transition: opacity .3s;
+            opacity: .7;
+            filter:alpha(opacity=70);
+        }
     }
-    @mixin round{
-        border-radius: 2rem;
-        @include base;
-    }
-    @mixin square{
-        border: 1px solid;
-        @include base;
-    }
-    // banner-left
-    a.banner-left{
-        @include round;
-    }
-    a.banner-left-active{
-        background-color: $color !important;
-    }
-    // banner-right
-    a.banner-right{
-        @include square;
-    }
-    a.banner-right-active{
-        background-color: $color !important;
-    }
-    // banner-top
-    a.banner-top{
-        border: 2px solid;
-    }
-    a.banner-top-active{
-        background-color: $color !important;
-        opacity:1;
-        filter:alpha(opacity=100);
-    }
-    // banner-bottom
-    a.banner-bottom{
-        border: 2px solid;
-    }
-    a.banner-bottom-active{
-        background-color: $color !important;
-        opacity:1;
-        filter:alpha(opacity=100);
-    }
-    a{
-        display: block;
-        float: left;
-        width: 2rem;
-        height: 2rem;
-        line-height: 1.8rem;
-        margin:5px;
-        color:#eee;
-        background: $color;
+    // previous/next buttons
+    $btn-size: 3rem;
+    @mixin slide-btn{
+        // background-color: $color;
+        position: absolute;
+        font-size: $btn-size * 0.9;
+        top: 50%;
+        margin-top: - $btn-size/2;
+        background-color: #000;
+        opacity: .4;
+        filter:alpha(opacity=40);
+        // color: #fff;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
         text-align: center;
-        text-decoration: none;
-        -webkit-transition: opacity .3s;
-        opacity: .7;
-        filter:alpha(opacity=70);
+        color: #ccc;
+        line-height: $btn-size;
+        :hover,
+        :focus{
+            text-decoration: none;
+        }
+    }
+    /* slide prev/next buttons */
+    .btn-prev{
+        left: 0;
+        @include slide-btn;
+    }
+    .btn-next{
+        right: 0;
+        @include slide-btn;
     }
 }
