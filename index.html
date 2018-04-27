@@ -27,11 +27,13 @@
 
     <script src="/assets/js/app.js?v=20150906162259"></script>
 
-    <script src="/assets/js/jquery.bigcorn.slider.js?v=20180426151458"></script>
+    <script src="/assets/js/jquery.bigcorn.slider.js?v=20180427135924"></script>
 
 <script>/*common slider banner config options*/
 var banner = {
     config: {
+        prevBtnSelector: ".btn-prev",
+        nextBtnSelector: ".btn-next",
         imageSlot: {
             selector: ".slot", // default => `.img-slot`             
             images: [
@@ -102,7 +104,15 @@ var banner = {
             
 
 <div class="banner" id="banner-left">
-    <div class="slot"></div>
+    <div class="slot">
+        <!-- <a href="/test"><img src="http://i2.bvimg.com/642349/284476fd0da91d0a.jpg" title="Test"></a> -->
+    </div>
+    <div class="btn-prev">
+        <a href="javascript:;">&lt;</a>
+    </div>
+    <div class="btn-next">
+        <a href="javascript:;">&gt;</a>
+    </div>
     <div class="btn-slot btn-slot-bottom-right"></div>
 </div>
 

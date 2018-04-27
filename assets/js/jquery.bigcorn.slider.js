@@ -14,20 +14,25 @@
                 stay: null,
                 id: null,
                 showButtonNum: null,
+                prevButton: null,
+                nextButton: null,
+                totalImageCount: null,
                 init(config){
                     var self = banner;
                     if ($this.length == 0) return;
                     self.id = $this.attr('id');
                     self.imageSlot = $this.find(config.imageSlot.selector || ".img-slot");
                     self.buttonSlot = $this.find(config.buttonSlot.selector || ".btn-slot");
+                    self.prevButton = $this.find(config.prevBtnSelector || ".btn-prev");
+                    self.nextButton = $this.find(config.nextBtnSelector || ".btn-next");
                     self.direction = config.direction ? config.direction : "left";
                     self.speed = config.speed ? config.speed : "normal";
                     self.btnActiveClass = config.buttonSlot.btnActiveClass ? config.buttonSlot.btnActiveClass : "active";
                     self.btnCommonClass = config.buttonSlot.btnCommonClass ? config.buttonSlot.btnCommonClass : null;
                     self.stay = config.stay ? config.stay : 3000;
                     self.images = config.imageSlot.images || [];
+                    self.totalImageCount = self.images.length + self.imageSlot.children().length;
                     self.showButtonNum = config.buttonSlot.showNum ? config.buttonSlot.showNum : false;
-
                     self._handleImageSlotContent();
 
                     switch (self.direction){
@@ -46,44 +51,70 @@
                             self._registerAnimate(self._doAnimateBottom);
                             break;
                         default:
+                            self._initOnDirectionLeft();
                             self._initImageSlotWidth();
                             self._registerAnimate(self._doAnimateDefault);
                             break;
                     }
                 },
+                _initOnDirectionLeft(){
+                    var self = banner;
+                    self.imageSlot.css("left", - self.imageSlot.width())
+                    ;
+                },
                 _initOnDirectionRight(){
                     var self = banner;
-                    self.imageSlot.css("right", 0)
+                    self.imageSlot.css("right", - self.imageSlot.width())
                         .children('a').css("float", "right")
                     ;
                 },
                 _initOnDirectionBottom(){
                     var self = banner;
                     self.imageSlot.css("bottom", 0)
-
                     ;
                 },
                 _handleImageSlotContent(){
                     var self = banner,
                         $imageSlot = self.imageSlot,
-                        $buttonSlot = self.buttonSlot;
-                    if (self.direction == "bottom"){
-                        for (var i = self.images.length - 1;i >= 0;i--){
-                            $imageSlot.append(
-                                "<a href='javascript:;'><img src='" + self.images[i] + "'></a>")
-                        }
-                        //extra image for smooth transition;
-                        $imageSlot.prepend($imageSlot.children("a").eq(-1).clone());
+                        $buttonSlot = self.buttonSlot
+                    ;
+                    if(self.direction == "bottom"){
+                        self.images.forEach((i) => {
+                            $imageSlot.prepend(
+                                "<a href='javascript:;'><img src='" + i + "'></a>")
+                        })
                     }else{
                         self.images.forEach((i) => {
                             $imageSlot.append(
                                 "<a href='javascript:;'><img src='" + i + "'></a>")
-                        })                         
-                        //extra image for smooth transition;
-                        $imageSlot.append($imageSlot.children("a").eq(0).clone());
+                        })
                     }
+
+                    var $children = $imageSlot.children("a");
+                    switch (self.direction){
+                        case "bottom":
+                        // prepend extra image
+                            $imageSlot
+                                .prepend($children.eq(-1).clone());
+                            break;
+                        case "top":
+                        // append extra image
+                            $imageSlot
+                                .append($children.eq(0).clone());
+                            break;
+                        default:
+                            /*
+                                extra images for smooth transition;
+                                [img_n, img_0, img_1, img_2, ...img_n, img_0]
+                            */
+                            $imageSlot
+                                .append($children.eq(0).clone())
+                                .prepend($children.eq(-1).clone())
+                            break;
+                    }
+
                     //create buttons
-                    for (var i = 0; i < self.images.length; i++) {
+                    for (var i = 0; i < self.totalImageCount; i++) {
                         $buttonSlot.append("<a href='javascript:;'>" + (self.showButtonNum === true? (i + 1) : '') + "</a>");
                     }
                     var btns = $buttonSlot.children();
@@ -130,9 +161,21 @@
                             self.play(theAnimate);
                         })
                     ;
-
+                    if (self.prevButton && self.nextButton){
+                        self.prevButton.on("click", function(){
+                            self.curIndex --;
+                            theAnimate();
+                            self.stop();
+                            self.play(theAnimate);
+                        })
+                        self.nextButton.on("click", function(){
+                            self.curIndex ++;
+                            theAnimate();
+                            self.stop();
+                            self.play(theAnimate);
+                        })
+                    }
                     self.play(theAnimate);
-
                 },
                 _onClickBtn(callback){
                     var self = banner;
@@ -162,7 +205,6 @@
                 _doAnimate(config, callback){
                     var self = banner,
                         $imageSlot = banner.imageSlot,
-                        imageCount = $imageSlot.children().length,
                         curIndex = self.curIndex
                     ;
                     function _handleConfig(config){
@@ -187,12 +229,16 @@
                     var self = banner;
                     self._doAnimate({
                         left: function($imageSlot, curIndex){
-                            return -($imageSlot.width() / $imageSlot.children().length * curIndex) + "px";
+                            // `curIndex + 1` considered the first extra image on the left
+                            return -($imageSlot.children().width() * (curIndex + 1)) + "px";
                         }
                     }, function($imageSlot, curIndex){
-                        if (curIndex == $imageSlot.children().length -1){
+                        if (curIndex >= self.totalImageCount){
                             self.curIndex = 0;
-                            $imageSlot.css("left", 0);
+                            $imageSlot.css("left", - $imageSlot.children().width());
+                        }else if(curIndex < 0){
+                            self.curIndex = self.totalImageCount -1;
+                            $imageSlot.css("left", - $imageSlot.children().width() * self.totalImageCount);
                         }
                         self.changeButton();
                     })
@@ -201,12 +247,16 @@
                     var self = banner;
                     self._doAnimate({
                         right: function($imageSlot, curIndex){
-                            return -($imageSlot.width() / $imageSlot.children().length * curIndex) + "px";
+                            // `curIndex + 1` considered the first extra image on the right
+                            return -($imageSlot.children().width() * (curIndex + 1)) + "px";
                         }
                     }, function($imageSlot, curIndex){
-                        if (curIndex == $imageSlot.children().length -1){
+                        if (curIndex >= self.totalImageCount){
                             self.curIndex = 0;
-                            $imageSlot.css("right", 0);
+                            $imageSlot.css("right", - $imageSlot.children().width());
+                        }else if(curIndex < 0){
+                            self.curIndex = self.totalImageCount -1;
+                            $imageSlot.css("right", - $imageSlot.children().width() * self.totalImageCount);
                         }
                         self.changeButton();
                     })
@@ -215,10 +265,10 @@
                     var self = banner;
                     self._doAnimate({
                         top: function($imageSlot, curIndex){
-                            return -($imageSlot.height() / $imageSlot.children().length * curIndex) + "px";
+                            return -($imageSlot.children().height() * curIndex) + "px";
                         }
                     }, function($imageSlot, curIndex){
-                        if (curIndex == $imageSlot.children().length - 1){
+                        if (curIndex == self.totalImageCount){
                             self.curIndex = 0;
                             $imageSlot.css("top",0);
                         }
@@ -229,10 +279,10 @@
                     var self = banner;
                     self._doAnimate({
                         bottom: function($imageSlot, curIndex){
-                            return -($imageSlot.height() / $imageSlot.children().length * curIndex) + "px";
+                            return -($imageSlot.children().height() * curIndex) + "px";
                         }
                     }, function($imageSlot, curIndex){
-                        if (curIndex == $imageSlot.children().length - 1){
+                        if (curIndex == self.totalImageCount){
                             self.curIndex = 0;
                             $imageSlot.css("bottom",0);
                         }
