@@ -43,6 +43,7 @@
                             self._registerAnimate(self._doAnimateRight);
                             break;
                         case "top":
+                            self._initOnDirectionTop();
                             self._initImageSlotHeight();
                             self._registerAnimate(self._doAnimateTop);
                             break;
@@ -71,7 +72,12 @@
                 },
                 _initOnDirectionBottom(){
                     var self = banner;
-                    self.imageSlot.css("bottom", 0)
+                    self.imageSlot.css("bottom", - self.imageSlot.height())
+                    ;
+                },
+                _initOnDirectionTop(){
+                    var self = banner;
+                    self.imageSlot.css("top", - self.imageSlot.height())
                     ;
                 },
                 _handleImageSlotContent(){
@@ -91,28 +97,14 @@
                         })
                     }
 
+                    /*
+                        extra images for smooth transition;
+                        [img_n, img_0, img_1, img_2, ...img_n, img_0]
+                    */
                     var $children = $imageSlot.children("a");
-                    switch (self.direction){
-                        case "bottom":
-                        // prepend extra image
-                            $imageSlot
-                                .prepend($children.eq(-1).clone());
-                            break;
-                        case "top":
-                        // append extra image
-                            $imageSlot
-                                .append($children.eq(0).clone());
-                            break;
-                        default:
-                            /*
-                                extra images for smooth transition;
-                                [img_n, img_0, img_1, img_2, ...img_n, img_0]
-                            */
-                            $imageSlot
-                                .append($children.eq(0).clone())
-                                .prepend($children.eq(-1).clone())
-                            break;
-                    }
+                    $imageSlot
+                        .append($children.eq(0).clone())
+                        .prepend($children.eq(-1).clone())
 
                     //create buttons
                     for (var i = 0; i < self.totalImageCount; i++) {
@@ -270,12 +262,15 @@
                     var self = banner;
                     self._doAnimate({
                         top: function($imageSlot, curIndex){
-                            return -($imageSlot.children().height() * curIndex) + "px";
+                            return -($imageSlot.children().height() * (curIndex + 1)) + "px";
                         }
                     }, function($imageSlot, curIndex){
-                        if (curIndex == self.totalImageCount){
+                        if (curIndex >= self.totalImageCount){
                             self.curIndex = 0;
-                            $imageSlot.css("top",0);
+                            $imageSlot.css("top", - $imageSlot.children().height());
+                        }else if(curIndex < 0){
+                            self.curIndex = self.totalImageCount -1;
+                            $imageSlot.css("top", - $imageSlot.children().height() * self.totalImageCount);
                         }
                         self.changeButton();
                     })
@@ -284,12 +279,15 @@
                     var self = banner;
                     self._doAnimate({
                         bottom: function($imageSlot, curIndex){
-                            return -($imageSlot.children().height() * curIndex) + "px";
+                            return -($imageSlot.children().height() * (curIndex + 1)) + "px";
                         }
                     }, function($imageSlot, curIndex){
-                        if (curIndex == self.totalImageCount){
+                        if (curIndex >= self.totalImageCount){
                             self.curIndex = 0;
-                            $imageSlot.css("bottom",0);
+                            $imageSlot.css("bottom", - $imageSlot.children().height());
+                        }else if(curIndex < 0){
+                            self.curIndex = self.totalImageCount -1;
+                            $imageSlot.css("bottom", - $imageSlot.children().height() * self.totalImageCount);
                         }
                         self.changeButton();
                     })

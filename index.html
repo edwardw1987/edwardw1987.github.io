@@ -27,32 +27,8 @@
 
     <script src="/assets/js/app.js?v=20150906162259"></script>
 
-    <script src="/assets/js/jquery.bigcorn.slider.js?v=20180427142443"></script>
+    <script src="/assets/js/jquery.bigcorn.slider.js?v=20180427163051"></script>
 
-<script>/*common slider banner config options*/
-var banner = {
-    config: {
-        prevBtnSelector: ".btn-prev",
-        nextBtnSelector: ".btn-next",
-        imageSlot: {
-            selector: ".slot", // default => `.img-slot`             
-            images: [
-                "/assets/img/lunch_1.jpg",
-                "/assets/img/lunch_2.jpg",
-                "http://i2.bvimg.com/642349/284476fd0da91d0a.jpg",
-                "http://i2.bvimg.com/642349/bf5d16434897b6d1.jpg",
-                "http://i2.bvimg.com/642349/e4afe4ff4b43bcf1.jpg",
-                "http://i2.bvimg.com/642349/e7f50c4a86c84aa9.jpg",
-                "http://i2.bvimg.com/642349/fa31a3708ba844a9.jpg",
-            ]
-        },
-        buttonSlot: {
-            selector: ".btn-slot", //default value
-            btnActiveClass: "highlight",
-        },
-    }
-}
-</script>
 
   <body><header>
     <nav class="navbar navbar-default bigcorn">
@@ -101,11 +77,13 @@ var banner = {
 </header><div class="container-fluid">
     <div class="row">
         <div class="col-md-4 col-sm-12">
-            
-
-<div class="banner" id="banner-left">
+            <div class="banner" id="left">
     <div class="slot">
-        <!-- <a href="/test"><img src="http://i2.bvimg.com/642349/284476fd0da91d0a.jpg" title="Test"></a> -->
+        <a href=""><img src="http://i2.bvimg.com/642349/284476fd0da91d0a.jpg"></a>
+        <a href=""><img src="http://i2.bvimg.com/642349/bf5d16434897b6d1.jpg"></a>
+        <a href=""><img src="http://i2.bvimg.com/642349/e4afe4ff4b43bcf1.jpg"></a>
+        <a href=""><img src="http://i2.bvimg.com/642349/e7f50c4a86c84aa9.jpg"></a>
+        <a href=""><img src="http://i2.bvimg.com/642349/fa31a3708ba844a9.jpg"></a>
     </div>
     <div class="btn-prev">
         <a href="javascript:;">&lt;</a>
@@ -117,19 +95,25 @@ var banner = {
 </div>
 
 <script>
-    $(function(){
-        //default direction toward the `left`
-        $("#banner-left").BigCornSlider(
-            Object.assign({}, banner.config, {
-                buttonSlot:{
-                    selector: ".btn-slot",
-                    btnActiveClass: "banner-left-active",
-                    btnCommonClass: "banner-left"
-                }
-            }
-        ))
-    }) 
+$(function(){
+    //default direction toward the `left`
+    var config = {
+        prevBtnSelector: ".btn-prev",
+        nextBtnSelector: ".btn-next",
+        imageSlot: {
+            selector: ".slot", // default => `.img-slot`             
+            images: []
+        },
+        buttonSlot:{
+            selector: ".btn-slot",
+            btnActiveClass: "banner-left-active",
+            btnCommonClass: "banner-left"
+        }
+    } 
+    $("#left").BigCornSlider(config);
+});
 </script>
+
         </div>
         <div class="col-md-8 col-sm-12">
             <ul class="list-group">

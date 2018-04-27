@@ -199,6 +199,13 @@ footer {
   footer p {
     text-align: center; }
 
+pre {
+  height: 300px; }
+  pre code {
+    height: 100%;
+    white-space: pre;
+    font-size: .5rem; }
+
 html {
   font-size: 11px; }
 
@@ -237,6 +244,13 @@ footer {
   color: #fff; }
   footer p {
     text-align: center; }
+
+pre {
+  height: 300px; }
+  pre code {
+    height: 100%;
+    white-space: pre;
+    font-size: .5rem; }
 
 .banner {
   width: 100%;
