@@ -17,6 +17,7 @@
                 prevButton: null,
                 nextButton: null,
                 totalImageCount: null,
+                isAnimationRunning: false,
                 init(config){
                     var self = banner;
                     if ($this.length == 0) return;
@@ -163,12 +164,14 @@
                     ;
                     if (self.prevButton && self.nextButton){
                         self.prevButton.on("click", function(){
+                            if (self.isAnimationRunning) return;
                             self.curIndex --;
                             theAnimate();
                             self.stop();
                             self.play(theAnimate);
                         })
                         self.nextButton.on("click", function(){
+                            if (self.isAnimationRunning) return;
                             self.curIndex ++;
                             theAnimate();
                             self.stop();
@@ -217,10 +220,12 @@
                         }
                         return config;
                     }
+                    self.isAnimationRunning = true;
                     $imageSlot.animate(
                         _handleConfig(config), 
                         self.speed, 
                         function(){
+                            self.isAnimationRunning = false;
                             callback($imageSlot, curIndex);
                         }
                     )
