@@ -5,6 +5,3 @@
 {% for f in files %}
     <script src="{{ f.path | relative_url }}?v={{ f.modified_time|date: '%Y%m%d%H%M%S' }}"></script>
 {% endfor %}
-<script>
-    {%- include banner.config.js %}
-</script>

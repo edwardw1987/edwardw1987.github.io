@@ -55,3 +55,11 @@ footer {
         text-align: center;
     }
 }
+pre{
+    height: 300px;
+    code{
+        height: 100%;
+        white-space: pre;
+        font-size: .5rem;
+    }
+} 
