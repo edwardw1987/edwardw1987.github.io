@@ -1,9 +1,8 @@
 @import "bigcorn";
 $banner-width: 100%;
-
 .banner{
     width: $banner-width;
-    height: 300px;
+    height: $demo-height;
     margin: 0 auto;
     // border: 15px solid #eee;
     overflow: hidden;
@@ -49,6 +48,14 @@ $banner-width: 100%;
     .mask-bottom{width: 100%; height: 40px; bottom:0;}
     .mask-left{width: 40px; height: 100%; left: 0;}
     .mask-right{width: 40px; height: 100%; right: 0;}
+    // text
+    $text-size: 2rem;
+    .mask-text{
+        color: $color;
+        text-align: center;
+        font-size: $text-size;
+        line-height: $text-size * 1.5;
+    }
     /*btn-slot*/
     .btn-slot{position: absolute; }
     .btn-slot-bottom-left{bottom:0;left:0;}
@@ -143,6 +150,7 @@ $banner-width: 100%;
         line-height: $btn-size;
         :hover,
         :focus{
+            color: $color;
             text-decoration: none;
         }
     }

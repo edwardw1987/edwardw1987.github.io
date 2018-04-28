@@ -1,0 +1,24 @@
+---
+layout: default
+title: slide-toward-the-bottom
+project: jquery.bigcorn.slider
+repo: https://github.com/edwardw1987/jquery.bigcorn.slider
+---
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 col-sm-12 col">
+            {% include_relative nav.html %}
+            {% include banner/bottom.html %}
+        </div>
+        <div class="col-md-9 col-sm-12 col">
+            {% highlight html %}
+                {%- include banner/bottom.html -%}
+            {% endhighlight %}
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        // $(".navbar").addClass("navbar-fixed-top");
+    })
+</script>

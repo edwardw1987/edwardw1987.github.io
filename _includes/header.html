@@ -40,7 +40,9 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">项目 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 {% for item in site.projects %}
-                <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+                {% if item.index == true %}
+                <li><a href="{{ item.url }}">{{ item.project }}</a></li>
+                {% endif %}
                 {% endfor %}
                 <!-- <li role="separator" class="divider"></li> -->
               </ul>
