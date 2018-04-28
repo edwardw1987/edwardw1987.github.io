@@ -138,14 +138,14 @@ $banner-width: 100%;
         top: 50%;
         margin-top: - $btn-size/2;
         a{
-            color: #ccc;
+            color: $color;
             -webkit-transition: color .2s;
             &:hover,
             &:focus{
                 text-decoration: none;
             }
             &:active{
-                color: $color;
+                color: #eee;
             }
         }
     }
