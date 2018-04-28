@@ -131,36 +131,33 @@ $banner-width: 100%;
         }
     }
     // previous/next buttons
-    $btn-size: 3rem;
+    $btn-size: 6.5rem;
     @mixin slide-btn{
-        // background-color: $color;
         position: absolute;
-        font-size: $btn-size * 0.9;
+        font-size: $btn-size * 0.7;
         top: 50%;
         margin-top: - $btn-size/2;
-        background-color: #000;
-        opacity: .4;
-        filter:alpha(opacity=40);
-        // color: #fff;
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%;
-        text-align: center;
-        color: #ccc;
-        line-height: $btn-size;
-        :hover,
-        :focus{
-            color: $color;
-            text-decoration: none;
+        a{
+            color: #ccc;
+            -webkit-transition: color .2s;
+            &:hover,
+            &:focus{
+                text-decoration: none;
+            }
+            &:active{
+                color: $color;
+            }
         }
     }
     /* slide prev/next buttons */
     .btn-prev{
-        left: 0;
+        text-align: left;
+        left: .5rem;
         @include slide-btn;
     }
     .btn-next{
-        right: 0;
+        text-align: right;
+        right: .5rem;
         @include slide-btn;
     }
 }
