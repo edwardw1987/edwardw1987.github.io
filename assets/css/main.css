@@ -199,12 +199,13 @@ footer {
   footer p {
     text-align: center; }
 
-pre {
+.demo-wrapper pre {
   height: 300px; }
-  pre code {
-    height: 100%;
-    white-space: pre;
-    font-size: 1rem; }
+
+pre code {
+  height: 100%;
+  white-space: pre;
+  font-size: 1rem; }
 
 html {
   font-size: 11px; }
@@ -245,12 +246,13 @@ footer {
   footer p {
     text-align: center; }
 
-pre {
+.demo-wrapper pre {
   height: 300px; }
-  pre code {
-    height: 100%;
-    white-space: pre;
-    font-size: 1rem; }
+
+pre code {
+  height: 100%;
+  white-space: pre;
+  font-size: 1rem; }
 
 .banner {
   width: 100%;
