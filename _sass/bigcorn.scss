@@ -55,8 +55,12 @@ footer {
         text-align: center;
     }
 }
+.demo-wrapper{
+    pre{
+        height: 300px;
+    }
+}
 pre{
-    height: 300px;
     code{
         height: 100%;
         white-space: pre;
