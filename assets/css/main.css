@@ -167,7 +167,8 @@ body {
   background-color: #fff; }
 
 a, a:hover {
-  color: #54bca6; }
+  color: #54bca6;
+  text-decoration: none; }
 
 /* navbar */
 .navbar-brand.bigcorn,
@@ -211,7 +212,8 @@ body {
   background-color: #fff; }
 
 a, a:hover {
-  color: #54bca6; }
+  color: #54bca6;
+  text-decoration: none; }
 
 /* navbar */
 .navbar-brand.bigcorn,
