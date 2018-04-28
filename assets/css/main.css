@@ -375,12 +375,12 @@ pre code {
     top: 50%;
     margin-top: -3.25rem; }
     .banner .btn-prev a {
-      color: #ccc;
+      color: #54bca6;
       -webkit-transition: color .2s; }
       .banner .btn-prev a:hover, .banner .btn-prev a:focus {
         text-decoration: none; }
       .banner .btn-prev a:active {
-        color: #54bca6; }
+        color: #eee; }
   .banner .btn-next {
     text-align: right;
     right: .5rem;
@@ -389,9 +389,9 @@ pre code {
     top: 50%;
     margin-top: -3.25rem; }
     .banner .btn-next a {
-      color: #ccc;
+      color: #54bca6;
       -webkit-transition: color .2s; }
       .banner .btn-next a:hover, .banner .btn-next a:focus {
         text-decoration: none; }
       .banner .btn-next a:active {
-        color: #54bca6; }
+        color: #eee; }
