@@ -368,40 +368,30 @@ pre code {
     opacity: .7;
     filter: alpha(opacity=70); }
   .banner .btn-prev {
-    left: 0;
+    text-align: left;
+    left: .5rem;
     position: absolute;
-    font-size: 2.7rem;
+    font-size: 4.55rem;
     top: 50%;
-    margin-top: -1.5rem;
-    background-color: #000;
-    opacity: .4;
-    filter: alpha(opacity=40);
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    text-align: center;
-    color: #ccc;
-    line-height: 3rem; }
-    .banner .btn-prev :hover,
-    .banner .btn-prev :focus {
-      color: #54bca6;
-      text-decoration: none; }
+    margin-top: -3.25rem; }
+    .banner .btn-prev a {
+      color: #ccc;
+      -webkit-transition: color .2s; }
+      .banner .btn-prev a:hover, .banner .btn-prev a:focus {
+        text-decoration: none; }
+      .banner .btn-prev a:active {
+        color: #54bca6; }
   .banner .btn-next {
-    right: 0;
+    text-align: right;
+    right: .5rem;
     position: absolute;
-    font-size: 2.7rem;
+    font-size: 4.55rem;
     top: 50%;
-    margin-top: -1.5rem;
-    background-color: #000;
-    opacity: .4;
-    filter: alpha(opacity=40);
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    text-align: center;
-    color: #ccc;
-    line-height: 3rem; }
-    .banner .btn-next :hover,
-    .banner .btn-next :focus {
-      color: #54bca6;
-      text-decoration: none; }
+    margin-top: -3.25rem; }
+    .banner .btn-next a {
+      color: #ccc;
+      -webkit-transition: color .2s; }
+      .banner .btn-next a:hover, .banner .btn-next a:focus {
+        text-decoration: none; }
+      .banner .btn-next a:active {
+        color: #54bca6; }
