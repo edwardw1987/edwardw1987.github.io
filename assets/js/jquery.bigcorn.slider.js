@@ -205,7 +205,7 @@
                         curIndex = self.curIndex
                     ;
                     function _handleConfig(config){
-                        for (key in config){
+                        for (let key in config){
                             let value = config[key];
                             if (typeof value == "function"){
                                 value = value($imageSlot, curIndex);
