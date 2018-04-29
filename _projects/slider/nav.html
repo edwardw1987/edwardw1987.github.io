@@ -10,7 +10,15 @@
     <ul class="list-group">
         {% assign list_data = site.projects | where: "project", "jquery.bigcorn.slider" | sort: "index" %}
         {% for item in list_data %}
-        <li class="list-group-item {% if page.index == item.index %}active{% endif %}"><a href="{{ item.url }}">{{ item.title }}</a></li>
+        {% if page.index == item.index %}
+            <li class="list-group-item active">
+                <a href="javascript:;">{{ item.title }}</a>
+            </li>
+        {% else %}
+            <li class="list-group-item">
+                <a href="{{ item.url }}">{{ item.title }}</a>
+            </li>
+        {% endif %}
         {% endfor %}
     </ul>
 </div>
