@@ -47,6 +47,7 @@ exclude:
   - vendor/ruby/
   - utils/
   - material/
+  - publish.sh
 defaults:
   - scope:
       path: "assets/js"

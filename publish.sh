@@ -1,8 +1,9 @@
 #!/bin/sh
 curdir=$(cd `dirname $0`; pwd) 
-rootdir=$curdir/../;
-src=$root/dev/_site/*
-dest=$root/master
+cd $curdir/..;
+rootdir=$(pwd);
+src=$rootdir/dev/_site/*
+dest=$rootdir/master
 
 cp -r $src $dest;
 cd $dest;
