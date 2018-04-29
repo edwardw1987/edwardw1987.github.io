@@ -1,4 +1,4 @@
-<div class="nav">
+<div class="slider-nav">
     <div class="page-header" style="margin-top: 0;">
         <h2 style="margin-top: 0;font-size: 2rem;">
             <a href="{{ page.repo }}">
@@ -10,9 +10,7 @@
     <ul class="list-group">
         {% assign list_data = site.projects | where: "project", "jquery.bigcorn.slider" | sort: "index" %}
         {% for item in list_data %}
-        {% if project == jquery.bigcorn.slider %}
-        <li class="list-group-item"><a href="{{ item.url }}">{{ item.title }}</a></li>
-        {% endif %}
+        <li class="list-group-item {% if page.index == item.index %}active{% endif %}"><a href="{{ item.url }}">{{ item.title }}</a></li>
         {% endfor %}
     </ul>
 </div>
