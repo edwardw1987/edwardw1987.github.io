@@ -1,3 +1,7 @@
+---
+# compile by jekyll-babel
+# es2015 => es5
+---
 (function ($) {
     function BigCornSlider(config){
         var $this = this,

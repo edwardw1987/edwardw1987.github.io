@@ -27,6 +27,7 @@ markdown: kramdown
 # theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-babel
 timezone: Asia/Shanghai
 author: Edward
 show_excerpts: true
