@@ -193,6 +193,9 @@ a, a:hover {
 
 .slider-nav li.list-group-item {
   border-color: #54bca6; }
+  .slider-nav li.list-group-item a {
+    width: 100%;
+    display: block; }
 .slider-nav li.list-group-item.active {
   border-color: #54bca6;
   background-color: #54bca6;
@@ -247,6 +250,9 @@ a, a:hover {
 
 .slider-nav li.list-group-item {
   border-color: #54bca6; }
+  .slider-nav li.list-group-item a {
+    width: 100%;
+    display: block; }
 .slider-nav li.list-group-item.active {
   border-color: #54bca6;
   background-color: #54bca6;
