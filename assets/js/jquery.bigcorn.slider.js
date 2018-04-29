@@ -186,7 +186,7 @@
                     $imageSlot = banner.imageSlot,
                     curIndex = self.curIndex;
                 function _handleConfig(config) {
-                    for (key in config) {
+                    for (var key in config) {
                         var value = config[key];
                         if (typeof value == "function") {
                             value = value($imageSlot, curIndex);
