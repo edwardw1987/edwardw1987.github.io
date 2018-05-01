@@ -1,0 +1,69 @@
+@import "bigcorn";
+#cloud-player{
+    .sidebar-offcanvas{
+        padding-left: 3rem;
+    }
+    #btn-go{
+        color: #fff;
+        background-color: $color;
+        &:active{
+            color:$color;
+            background-color: #fff;
+        }
+    }
+    #sidebar{
+        ul{
+            overflow-y: scroll;
+            padding: 0;
+            padding-bottom: 10rem;
+            li{
+                // display: inline-block;
+                // display: inline-block;
+                 a{
+                    width: 13rem;
+                    display: block;
+                    padding: .5rem;
+                    white-space: nowrap;
+                    -webkit-transition: color .3s;
+                    &:active{
+                        color:#fff;
+                        background-color: $color;
+                    }
+                 }
+            }
+        }
+    }
+    #nav-initial-letter{
+        margin: 0;
+        padding: 0;
+        margin: 1rem 0;
+        border: 1px solid $color;
+        border-width: 2px 0;
+        @mixin li-active{
+            a{                
+                color: #fff;
+                background-color:$color;
+                -webkit-transition: color .3s;
+            }
+
+        }
+        li.active{
+            @include li-active;
+        }
+        li{
+            &:active{
+                @include li-active;
+            }
+            display: inline-block;
+            a{
+                width: 3rem;
+                height: 3rem;
+                line-height: 3rem;
+                font-size: 1.5rem;
+                display: block;
+                text-align: center;
+            }
+            
+        }
+    }
+}

@@ -3,3 +3,4 @@ _site
 .jekyll-metadata
 assets/img/slider
 Gemfile.lock
+.DS_Store

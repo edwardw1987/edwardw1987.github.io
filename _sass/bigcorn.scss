@@ -12,8 +12,9 @@ html{
 }
 body {
     background-color: $bgcolor;
+    padding-top: 70px;
 }
-a, a:hover{
+a, a:hover, a:focus{
     color: $color;
     text-decoration: none;
 }
@@ -48,6 +49,7 @@ a, a:hover{
     color: #fff;
     background-color: $color;
 }
+
 // slider-nav
 .slider-nav{
     li.list-group-item{
@@ -67,6 +69,11 @@ a, a:hover{
     }
 }
 /* footer */
+.sticky{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
 footer {
     padding:3rem 0 2rem 0;
     margin-top:5rem;
@@ -82,4 +89,4 @@ pre{
         white-space: pre;
         font-size: 1rem;
     }
-} 
+}

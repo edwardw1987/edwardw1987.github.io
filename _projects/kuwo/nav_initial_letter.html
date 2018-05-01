@@ -1,0 +1,129 @@
+---
+layout: default
+entry: true
+title: 玉米音乐云播放
+project: CloudPlayer
+---
+<div class="container-fluid" id="cloud-player">
+    <audio id="player"> don't support audio tag</audio>
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
+            <form id="form-go">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="kwd" name="kwd" placeholder="search for...">
+                  <span class="input-group-btn">
+                    <a class="btn" id="btn-go">
+                        <i class="fa fa-search fa-lg"></i>
+                    </a>
+                  </span>
+                </div>
+            </form>
+            <ul id="nav-initial-letter">
+                {% for i in site.data.girlGroupsTitle %}
+                    <li {% if forloop.first %} class="active" {% endif %} id="nav-{{ forloop.index }}">
+                    <a href="javascript:;"
+                        data-href="#items-{{ forloop.index }}"
+                        data-nav="#nav-{{ forloop.index }}">{{ i.initial_letter }}</a></li>
+                {% endfor %}
+             </ul>
+            <div id="sidebar">
+
+                {% for i in site.data.girlGroupsTitle %}
+                <ul class="items" id="items-{{ forloop.index }}">
+                    {% for item in i.items %}
+                        <li>
+                            <a href="javascript:;">{{ item }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>                    
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-left visible-xs">
+            <a href="javascript:;" data-toggle="offcanvas" id="toggle-offcanvas">
+                <i class="fa fa-bars fa-lg"></i></a>
+          </p>
+          <div class="song-list-frame"></div>
+          <!-- <h3 v-cloak>[[ message ]]</h3> -->
+        <!-- <div class="col-md-3 col-sm-12"> -->
+        </div>
+    </div>
+</div>
+<script>
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#cloud-player',
+        data: {
+        message: 'Hello Vue!'
+        }
+    })
+    var kuwo = {
+        hostUrl: "http://search.kuwo.cn/",
+        abslist: null,
+        searchMusic(key, page, pageRn){
+            var page = page || 0,
+                pageRn = pageRn || 12,
+                url = this.hostUrl + "r.s?all=" + key + 
+                    "&ft=music&newsearch=1&itemset=web_2013&client=kt&cluster=0&pn=" 
+                    + page + "&rn=" + pageRn + 
+                    "&rformat=json&callback=kuwo.searchMusicResult&encoding=utf8"
+            ;
+            $.getScript(url);
+        },
+        searchMusicResult(data){
+            var self = kuwo;
+            self.abslist = jsondata.abslist;
+            console.log(self.abslist);
+            var rid = self.abslist[1]["MUSICRID"];
+            $.ajax({
+                data: {rid: rid},
+                url: "http://localhost/kuwoapi.php"
+            }).then(function(data){
+                if (data.success){
+                    console.log(rid);
+                    console.log(data.result.aacdl)
+                    $("#player").attr({
+                        src: data.result.aacdl})
+                    .data("rid", rid).get(0).play();
+                    return;
+                }
+                alert("error");
+            })
+        },
+    }
+
+</script>
+<script>
+    $(function(){
+
+        var cloudPlayer = {
+
+        }
+        $("#btn-go").on("click", function (e, signal) {
+            var kwd = $("#kwd").val().trim();
+            if (kwd == "") return;
+            kuwo.searchMusic(kwd);
+        });
+        $('[data-toggle="offcanvas"]').on("click", function(){
+            $(this).children("i").toggleClass("fa-rotate-90");
+        })
+        $("[data-href]").on("click", function(){
+            var $this = $(this),
+                href = $this.data("href"),
+                nav = $this.data("nav")
+            ;
+            $(nav).addClass("active").siblings().removeClass("active");
+
+            $(href).show().siblings().hide();
+        })
+        $("#sidebar ul").hide().eq(0).show();
+        // $(".navbar").addClass("navbar-fixed-top");
+        $("footer").addClass("sticky");
+        /*显示隐藏sidebar列表*/
+        $("#sidebar").on("click", ".items > li > a", function (e) {
+            $("#kwd").val($(this).text())
+            $("#btn-go").trigger("click", [true]);
+          })
+    })
+</script>

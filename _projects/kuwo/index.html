@@ -1,0 +1,91 @@
+---
+layout: default
+entry: true
+title: 玉米音乐云播放
+project: CloudPlayer
+---
+<div class="container-fluid"> 
+    <div class="row row-offcanvas row-offcanvas-right">
+
+            <div class="col-xs-12 col-sm-9">
+              <p class="pull-right visible-xs">
+                <a href="javascript:;" data-toggle="offcanvas">By Singer</a>
+              </p>
+                <div>
+                    <!---->
+                    <div class="wait-for">
+                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="btn-toolbar" role="toolbar">
+                        <ul class="btn-group pull-right" id="btn-items" role="group">
+                            <li><a class="btn btn-pink" id="btn-bars">
+                                <span class="fa fa-bars"></span>
+                            </a></li>
+                            <li><a class="btn btn-pink" href="#songs">
+                                <span class="fa fa-music"></span>
+                            </a></li>
+                            <li><a class="btn btn-pink" href="#photo">
+                                <span class="fa fa-photo"></span>
+                            </a></li>
+                            <li>
+                                <a id="btn-go" class="btn btn-pink" href="#search">
+                                    <span class="fa fa-search fa-rotate-90"></span>
+                                </a>
+                                <div class="input-group search-bar">
+                                    <form id="form-go">
+                                        <input id="kwd"
+                                        name="kwd"
+                                        value="{{ kwd }}"
+                                        autocomplete="off"
+                                        class="form-control"
+                                        placeholder="Search for..."
+                                        style="border-color:pink;"
+                                        >
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="song-list-frame"></div>
+                </div>
+            </div><!--/.col-xs-12.col-sm-9-->
+
+            <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+              
+            </div><!--/.sidebar-offcanvas-->
+        <audio id="player"> don't support audio tag</audio>
+    </div>
+</div>
+<script>
+    $(function(){
+        $(".navbar").addClass("navbar-fixed-top");
+        $("footer").addClass("sticky");
+
+    })
+    $(function(){
+        $("[data-href]").on("click", function(){
+            var $this = $(this),
+                href = $this.data("href"),
+                nav = $this.data("nav")
+            ;
+            $(nav).addClass("active").siblings().removeClass("active");
+
+            $(href).show().siblings().hide();
+        })
+        $(".list-group").hide().eq(0).show();
+        /*显示隐藏sidebar列表*/
+        $("#sidebar").on("mouseenter", ".sidebar-title > a", function (e) {
+            $(this).siblings("ul").fadeIn(200)
+                .closest(".sidebar-title").siblings()
+                .children("ul").hide();
+        }).on("mouseleave", ".sidebar-title", function (e) {
+            $(this).children("ul").hide()
+        }).on("click", ".sidebar-item > a", function (e) {
+            console.log("click")
+            $(this).closest("ul").toggle();
+            $("#kwd").val($(this).text())
+                .closest("li").find("#btn-go").trigger("click", [true]);
+    })
+    })
+</script>
