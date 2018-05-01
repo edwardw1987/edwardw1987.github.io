@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css?v=20180501164953">
+
+
+<!-- <link rel="stylesheet" href="assets/css/kuwomusic.css""> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/offcanvas.css">
+<!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>玉米音乐云播放 | BigCorn</title>
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="玉米音乐云播放" />
+<meta name="author" content="Edward" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="代码 游戏 吃饭" />
+<meta property="og:description" content="代码 游戏 吃饭" />
+<link rel="canonical" href="http://localhost:4000/projects/kuwo/" />
+<meta property="og:url" content="http://localhost:4000/projects/kuwo/" />
+<meta property="og:site_name" content="BigCorn" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-05-01T16:49:53+08:00" />
+<script type="application/ld+json">
+{"description":"代码 游戏 吃饭","author":{"@type":"Person","name":"Edward"},"@type":"BlogPosting","url":"http://localhost:4000/projects/kuwo/","headline":"玉米音乐云播放","dateModified":"2018-05-01T16:49:53+08:00","datePublished":"2018-05-01T16:49:53+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/projects/kuwo/"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="BigCorn" /></head>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.bigcorn.slider.js?v=20180501164953"></script>
+
+
+
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+    <script src="assets/js/offcanvas.js"></script>
+    <!-- <script src="assets/js/layout.js"></script> -->
+<!--     <script src="assets/js/toolbar.js"></script>
+    <script src="assets/js/player.js"></script>
+ -->
+
+  <body><header>
+    <nav class="navbar navbar-default navbar-fixed-top bigcorn">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand bigcorn" href="/">
+            BigCorn
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            
+            <li><a href="/">首页</a></li>
+             <li> 
+              <a href="/about">关于我</a>
+              
+              </li>
+
+            <li class="dropdown bigcorn">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">项目 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                
+                
+                <li><a href="/projects/kuwo/index.html">CloudPlayer</a></li>
+                
+                
+                
+                <li><a href="/projects/kuwo/nav_initial_letter.html">CloudPlayer</a></li>
+                
+                
+                
+                
+                
+                <li><a href="/projects/slider/toward-the-left.html">jquery.bigcorn.slider</a></li>
+                
+                
+                
+                
+                
+                
+                <!-- <li role="separator" class="divider"></li> -->
+              </ul>
+            </li>
+
+          </ul>
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+</header><div class="container-fluid"> 
+    <div class="row row-offcanvas row-offcanvas-right">
+
+            <div class="col-xs-12 col-sm-9">
+              <p class="pull-right visible-xs">
+                <a href="javascript:;" data-toggle="offcanvas">By Singer</a>
+              </p>
+                <div>
+                    <!---->
+                    <div class="wait-for">
+                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="btn-toolbar" role="toolbar">
+                        <ul class="btn-group pull-right" id="btn-items" role="group">
+                            <li><a class="btn btn-pink" id="btn-bars">
+                                <span class="fa fa-bars"></span>
+                            </a></li>
+                            <li><a class="btn btn-pink" href="#songs">
+                                <span class="fa fa-music"></span>
+                            </a></li>
+                            <li><a class="btn btn-pink" href="#photo">
+                                <span class="fa fa-photo"></span>
+                            </a></li>
+                            <li>
+                                <a id="btn-go" class="btn btn-pink" href="#search">
+                                    <span class="fa fa-search fa-rotate-90"></span>
+                                </a>
+                                <div class="input-group search-bar">
+                                    <form id="form-go">
+                                        <input id="kwd"
+                                        name="kwd"
+                                        value=""
+                                        autocomplete="off"
+                                        class="form-control"
+                                        placeholder="Search for..."
+                                        style="border-color:pink;"
+                                        >
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="song-list-frame"></div>
+                </div>
+            </div><!--/.col-xs-12.col-sm-9-->
+
+            <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+              
+            </div><!--/.sidebar-offcanvas-->
+        <audio id="player"> don't support audio tag</audio>
+    </div>
+</div>
+<script>
+    $(function(){
+        $(".navbar").addClass("navbar-fixed-top");
+        $("footer").addClass("sticky");
+
+    })
+    $(function(){
+        $("[data-href]").on("click", function(){
+            var $this = $(this),
+                href = $this.data("href"),
+                nav = $this.data("nav")
+            ;
+            $(nav).addClass("active").siblings().removeClass("active");
+
+            $(href).show().siblings().hide();
+        })
+        $(".list-group").hide().eq(0).show();
+        /*显示隐藏sidebar列表*/
+        $("#sidebar").on("mouseenter", ".sidebar-title > a", function (e) {
+            $(this).siblings("ul").fadeIn(200)
+                .closest(".sidebar-title").siblings()
+                .children("ul").hide();
+        }).on("mouseleave", ".sidebar-title", function (e) {
+            $(this).children("ul").hide()
+        }).on("click", ".sidebar-item > a", function (e) {
+            console.log("click")
+            $(this).closest("ul").toggle();
+            $("#kwd").val($(this).text())
+                .closest("li").find("#btn-go").trigger("click", [true]);
+    })
+    })
+</script>
+  <footer>  
+    <p class="blog-text-center">© 2018-2019 Bigcorn.cn All Right Reserved.</p>
+    
+  </footer></body>
+
+</html>

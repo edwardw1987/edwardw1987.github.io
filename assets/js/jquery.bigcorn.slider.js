@@ -20,6 +20,7 @@
             nextButton: null,
             totalImageCount: null,
             isAnimationRunning: false,
+            holdOnMouseHover: null,
             init: function init(config) {
                 var self = banner;
                 if ($this.length == 0) return;
@@ -36,6 +37,7 @@
                 self.images = config.imageSlot.images || [];
                 self.totalImageCount = self.images.length + self.imageSlot.children().length;
                 self.showButtonNum = config.buttonSlot.showNum ? config.buttonSlot.showNum : false;
+                self.holdOnMouseHover = config.holdOnMouseHover ? config.holdOnMouseHover : false;
                 self._handleImageSlotContent();
 
                 switch (self.direction) {
@@ -128,10 +130,11 @@
                     $imageSlot = self.imageSlot;
 
                 self._onClickBtn(theAnimate);
-
-                $imageSlot.hover(self.stop, function () {
-                    self.play(theAnimate);
-                });
+                if (self.holdOnMouseHover) {
+                    $imageSlot.hover(self.stop, function () {
+                        self.play(theAnimate);
+                    });
+                }
 
                 $(window).on("blur", function () {
                     self.stop();
