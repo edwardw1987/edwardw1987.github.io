@@ -111,9 +111,6 @@ project: CloudPlayer
             kuwo.searchMusic(kwd);
 
         });
-        $('[data-toggle="offcanvas"]').on("click", function(){
-            $(this).children("i").toggleClass("fa-rotate-90");
-        })
         $("[data-href]").on("click", function(){
             var $this = $(this),
                 href = $this.data("href"),

@@ -2,12 +2,16 @@
 layout: default
 ---
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-md-3 col-sm-12 sidebar-offcanvas">
             {% include banner/home.html %}
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-9 col-sm-12">
             <ul class="list-group">
+                <li class="list-group-item visible-xs">            
+                  <a href="javascript:;" data-toggle="offcanvas" id="toggle-offcanvas">
+                      <i class="fa fa-bars fa-lg"></i></a>
+                </li>
                 {% if site.posts.size > 0 %}
                 {%- for post in site.posts -%}
                 {%- assign date_format = site.minima.date_format | default: "%m/%d/%Y" -%}

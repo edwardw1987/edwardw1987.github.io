@@ -13,9 +13,9 @@
     }
     #sidebar{
         ul{
-            overflow-y: scroll;
             padding: 0;
             padding-bottom: 10rem;
+            list-style:none;
             li{
                 // display: inline-block;
                 // display: inline-block;
@@ -24,7 +24,7 @@
                     display: block;
                     padding: .5rem;
                     white-space: nowrap;
-                    -webkit-transition: color .3s;
+                    transition: color .3s;
                     &:active{
                         color:#fff;
                         background-color: $color;
@@ -37,13 +37,12 @@
         margin: 0;
         padding: 0;
         margin: 1rem 0;
-        border: 1px solid $color;
-        border-width: 2px 0;
         @mixin li-active{
             a{                
                 color: #fff;
                 background-color:$color;
-                -webkit-transition: color .3s;
+                transition: color .3s;
+
             }
 
         }
@@ -51,11 +50,13 @@
             @include li-active;
         }
         li{
+            padding-bottom: .4rem;
             &:active{
                 @include li-active;
             }
             display: inline-block;
             a{
+                border: 1px solid $color;
                 width: 3rem;
                 height: 3rem;
                 line-height: 3rem;
