@@ -7,6 +7,7 @@ dest=$rootdir/master
 
 cp -r $src $dest;
 cd $dest;
+git pull origin master;
 git add --all;
 git commit -m "publish at $(date +%Y%m%d%H%M%S)";
 git push origin master;
