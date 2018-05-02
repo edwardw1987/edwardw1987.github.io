@@ -504,35 +504,35 @@ pre code {
     color: #54bca6;
     background-color: #fff; }
 #cloud-player #sidebar ul {
-  overflow-y: scroll;
   padding: 0;
-  padding-bottom: 10rem; }
+  padding-bottom: 10rem;
+  list-style: none; }
   #cloud-player #sidebar ul li a {
     width: 13rem;
     display: block;
     padding: .5rem;
     white-space: nowrap;
-    -webkit-transition: color .3s; }
+    transition: color .3s; }
     #cloud-player #sidebar ul li a:active {
       color: #fff;
       background-color: #54bca6; }
 #cloud-player #nav-initial-letter {
   margin: 0;
   padding: 0;
-  margin: 1rem 0;
-  border: 1px solid #54bca6;
-  border-width: 2px 0; }
+  margin: 1rem 0; }
   #cloud-player #nav-initial-letter li.active a {
     color: #fff;
     background-color: #54bca6;
-    -webkit-transition: color .3s; }
+    transition: color .3s; }
   #cloud-player #nav-initial-letter li {
+    padding-bottom: .4rem;
     display: inline-block; }
     #cloud-player #nav-initial-letter li:active a {
       color: #fff;
       background-color: #54bca6;
-      -webkit-transition: color .3s; }
+      transition: color .3s; }
     #cloud-player #nav-initial-letter li a {
+      border: 1px solid #54bca6;
       width: 3rem;
       height: 3rem;
       line-height: 3rem;

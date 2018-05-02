@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/main.css?v=20180502104533">
+<link rel="stylesheet" href="/assets/css/main.css?v=20180502164913">
 
-<!-- Begin Jekyll SEO tag v2.4.0 -->
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/offcanvas.css?v=20180502164913"><!-- Begin Jekyll SEO tag v2.4.0 -->
 <title>BigCorn | 代码 游戏 吃饭</title>
 <meta name="generator" content="Jekyll v3.7.3" />
 <meta property="og:title" content="BigCorn" />
@@ -24,10 +26,11 @@
 <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="BigCorn" /></head>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="/assets/js/jquery.bigcorn.slider.js?v=20180502104533"></script>
+<script src="/assets/js/jquery.bigcorn.slider.js?v=20180502164913"></script>
 
 
 
+<script src="/assets/js/offcanvas.js?v=20180502164913"></script>
 
   <body><header>
     <nav class="navbar navbar-default navbar-fixed-top bigcorn">
@@ -90,9 +93,9 @@
       </div><!-- /.container-fluid -->
     </nav>
 </header><div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <div class="banner" id="left" style="height: 300px;">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-md-3 col-sm-12 sidebar-offcanvas">
+            <div class="banner" id="left" style="height: 240px;">
     <div class="slot">
         
         <a href="javascript:;"><img src="http://api.bigcorn.cn/img/1.jpg"" alt="1.jpg" title="1.jpg"></a>
@@ -106,38 +109,34 @@
         <a href="javascript:;"><img src="http://api.bigcorn.cn/img/5.jpg" alt="5.jpg" title="5.jpg"></a>
         
     </div>
-    <div class="btn-prev">
-        <a href="javascript:;">&lt;</a>
-    </div>
-    <div class="btn-next">
-        <a href="javascript:;">&gt;</a>
-    </div>
     <div class="btn-slot btn-slot-bottom-right"></div>
 </div>
 
 <script>
-$(function(){
-    //default direction toward the `left`
-    var config = {
-        prevBtnSelector: ".btn-prev",
-        nextBtnSelector: ".btn-next",
-        imageSlot: {
-            selector: ".slot", // default => `.img-slot`             
-            images: []
-        },
-        buttonSlot:{
-            selector: ".btn-slot",
-            btnActiveClass: "banner-left-active",
-            btnCommonClass: "banner-left"
-        }
-    } 
-    $("#left").BigCornSlider(config);
-});
+    $(function(){
+        //default direction toward the `left`
+        var config = {
+            imageSlot: {
+                selector: ".slot", // default => `.img-slot`             
+                images: []
+            },
+            buttonSlot:{
+                selector: ".btn-slot",
+                btnActiveClass: "banner-left-active",
+                btnCommonClass: "banner-left"
+            }
+        } 
+        $("#left").BigCornSlider(config);
+    });
 </script>
 
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-9 col-sm-12">
             <ul class="list-group">
+                <li class="list-group-item visible-xs">            
+                  <a href="javascript:;" data-toggle="offcanvas" id="toggle-offcanvas">
+                      <i class="fa fa-bars fa-lg"></i></a>
+                </li>
                 <li class="list-group-item">
                     <article>
                         <div class="row">
