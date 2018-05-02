@@ -6,9 +6,22 @@
 
   <body>
     {%- include header.html -%}
-        
-    {{ content }}
-    
+    <div class="container-fluid">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-md-9 col-sm-12">
+            {{ content }}
+            </div>
+            <div class="col-md-3 col-sm-12 sidebar-offcanvas">
+                <a href="javascript:;" style="
+                position: absolute; left: -15%;
+                display:block;width: 3rem; height: 3rem;" data-toggle="offcanvas" id="toggle-offcanvas">
+                    <i class="fa fa-bars fa-lg"></i>
+                </a>
+
+                {% include banner/home.html %}
+            </div>
+        </div>      
+    </div>
     {%- include footer.html -%}
     
   </body>
