@@ -310,4 +310,3 @@
     $.fn.BigCornSlider = BigCornSlider;
 
 })(jQuery);
-

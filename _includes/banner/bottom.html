@@ -1,5 +1,9 @@
 <div class="banner" id="bottom">
-    <div class="slot"></div>
+    <div class="slot">
+        {% for img in site.data.sliderImages %}
+        <a href="javascript:;"><img src="{{ img.url }}" alt="{{ img.title }}" title="{{ img.title }}"></a>
+        {% endfor %}
+    </div>
     <div class="mask mask-bottom"></div>
     <div class="btn-prev">
         <a href="javascript:;">&lt;</a>
