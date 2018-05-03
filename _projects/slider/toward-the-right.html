@@ -5,21 +5,6 @@ project: jquery.bigcorn.slider
 repo: https://github.com/edwardw1987/jquery.bigcorn.slider
 index: 1
 ---
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3 col-sm-12 col">
-            {% include_relative nav.html %}
-            {% include banner/right.html %}
-        </div>
-        <div class="col-md-9 col-sm-12 col">
-            {% highlight html %}
-                {%- include banner/right.html -%}
-            {% endhighlight %}
-        </div>
-    </div>
-</div>
-<script>
-    $(function(){
-        // $(".navbar").addClass("navbar-fixed-top");
-    })
-</script>
+{% highlight html %}
+    {%- include banner/right.html -%}
+{% endhighlight %}

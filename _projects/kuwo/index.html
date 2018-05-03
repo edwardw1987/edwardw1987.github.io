@@ -4,66 +4,113 @@ entry: true
 title: 玉米音乐云播放
 project: CloudPlayer
 ---
-<div class="container-fluid"> 
-    <div class="row row-offcanvas row-offcanvas-right">
-
-            <div class="col-xs-12 col-sm-9">
-              <p class="pull-right visible-xs">
-                <a href="javascript:;" data-toggle="offcanvas">By Singer</a>
-              </p>
-                <div>
-                    <!---->
-                    <div class="wait-for">
-                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                    <div class="btn-toolbar" role="toolbar">
-                        <ul class="btn-group pull-right" id="btn-items" role="group">
-                            <li><a class="btn btn-pink" id="btn-bars">
-                                <span class="fa fa-bars"></span>
-                            </a></li>
-                            <li><a class="btn btn-pink" href="#songs">
-                                <span class="fa fa-music"></span>
-                            </a></li>
-                            <li><a class="btn btn-pink" href="#photo">
-                                <span class="fa fa-photo"></span>
-                            </a></li>
-                            <li>
-                                <a id="btn-go" class="btn btn-pink" href="#search">
-                                    <span class="fa fa-search fa-rotate-90"></span>
-                                </a>
-                                <div class="input-group search-bar">
-                                    <form id="form-go">
-                                        <input id="kwd"
-                                        name="kwd"
-                                        value="{{ kwd }}"
-                                        autocomplete="off"
-                                        class="form-control"
-                                        placeholder="Search for..."
-                                        style="border-color:pink;"
-                                        >
-                                    </form>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="song-list-frame"></div>
+<div class="container-fluid" id="cloud-player">
+    <audio id="player"> don't support audio tag</audio>
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
+            <form id="form-go">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="kwd" name="kwd" placeholder="search for...">
+                  <span class="input-group-btn">
+                    <a class="btn" id="btn-go">
+                        <i class="fa fa-search fa-lg"></i>
+                    </a>
+                  </span>
                 </div>
-            </div><!--/.col-xs-12.col-sm-9-->
+            </form>
+            <ul id="nav-initial-letter">
+                {% for i in site.data.girlGroupsTitle %}
+                    <li {% if forloop.first %} class="active" {% endif %} id="nav-{{ forloop.index }}">
+                    <a href="javascript:;"
+                        data-href="#items-{{ forloop.index }}"
+                        data-nav="#nav-{{ forloop.index }}">{{ i.initial_letter }}</a></li>
+                {% endfor %}
+             </ul>
+            <div id="sidebar">
 
-            <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-              
-            </div><!--/.sidebar-offcanvas-->
-        <audio id="player"> don't support audio tag</audio>
+                {% for i in site.data.girlGroupsTitle %}
+                <ul class="items" id="items-{{ forloop.index }}">
+                    {% for item in i.items %}
+                        <li>
+                            <a href="javascript:;">{{ item }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>                    
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-left visible-xs">
+            <a href="javascript:;" data-toggle="offcanvas" id="toggle-offcanvas">
+                <i class="fa fa-bars fa-lg"></i></a>
+          </p>
+          <div class="song-list-frame"></div>
+          <!-- <h3 v-cloak>[[ message ]]</h3> -->
+        <!-- <div class="col-md-3 col-sm-12"> -->
+        </div>
     </div>
 </div>
 <script>
-    $(function(){
-        $(".navbar").addClass("navbar-fixed-top");
-        $("footer").addClass("sticky");
-
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#cloud-player',
+        data: {
+        message: 'Hello Vue!'
+        }
     })
+    var kuwo = {
+        hostUrl: "http://search.kuwo.cn/",
+        apiUrl: "http://api.bigcorn.cn/kuwoapi.php",
+        abslist: null,
+        isPending: false,
+        searchMusic(key, page, pageRn){
+            if (this.isPending) return;
+            var page = page || 0,
+                pageRn = pageRn || 12,
+                url = this.hostUrl + "r.s?all=" + key + 
+                    "&ft=music&newsearch=1&itemset=web_2013&client=kt&cluster=0&pn=" 
+                    + page + "&rn=" + pageRn + 
+                    "&rformat=json&callback=kuwo.searchMusicResult&encoding=utf8"
+            ;
+            this.isPending = true;
+            $.getScript(url);
+        },
+        searchMusicResult(data){
+            var self = kuwo;
+            self.abslist = jsondata.abslist;
+            console.log(self.abslist);
+            var rid = self.abslist[1]["MUSICRID"];
+            $.ajax({
+                data: {rid: rid},
+                url: self.apiUrl,
+            }).then(function(data){
+                self.isPending = false;
+                if (data.success){
+                    console.log(rid);
+                    console.log(data.result.aacdl)
+                    $("#player").attr({
+                        src: data.result.aacdl})
+                    .data("rid", rid).get(0).play();
+                    return;
+                }
+                alert("error");
+            })
+        },
+    }
+
+</script>
+<script>
     $(function(){
+
+        var cloudPlayer = {
+
+        }
+        $("#btn-go").on("click", function (e, signal) {
+            var kwd = $("#kwd").val().trim();
+            if (kwd == "") return;
+            kuwo.searchMusic(kwd);
+
+        });
         $("[data-href]").on("click", function(){
             var $this = $(this),
                 href = $this.data("href"),
@@ -73,19 +120,13 @@ project: CloudPlayer
 
             $(href).show().siblings().hide();
         })
-        $(".list-group").hide().eq(0).show();
+        $("#sidebar ul").hide().eq(0).show();
+        // $(".navbar").addClass("navbar-fixed-top");
+        $("footer").addClass("sticky");
         /*显示隐藏sidebar列表*/
-        $("#sidebar").on("mouseenter", ".sidebar-title > a", function (e) {
-            $(this).siblings("ul").fadeIn(200)
-                .closest(".sidebar-title").siblings()
-                .children("ul").hide();
-        }).on("mouseleave", ".sidebar-title", function (e) {
-            $(this).children("ul").hide()
-        }).on("click", ".sidebar-item > a", function (e) {
-            console.log("click")
-            $(this).closest("ul").toggle();
+        $("#sidebar").on("click", ".items > li > a", function (e) {
             $("#kwd").val($(this).text())
-                .closest("li").find("#btn-go").trigger("click", [true]);
-    })
+            $("#btn-go").trigger("click", [true]);
+          })
     })
 </script>

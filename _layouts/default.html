@@ -1,29 +1,37 @@
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "zh-cn" }}">
+---
+layout: base
+---
+{%- include header.html -%}
+<div class="container-fluid">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-md-3 col-sm-12 sidebar-offcanvas">
+            <a class="visible-xs" href="javascript:;" data-toggle="offcanvas" id="toggle-offcanvas">
+                <i class="fa fa-bars fa-lg"></i>
+            </a>
+            {% if page.id == 'home' %}
+            {% include banner/home.html %}
+            {% endif %}
 
-    {%- include head.html -%}
-    {% include scripts.html %}
+            {% if page.project == 'jquery.bigcorn.slider' %}
+                {%- include banner/nav.html -%}
+                {% if page.url == '/projects/slider/toward-the-left.html' %}
+                    {% include banner/left.html %}
+                {% endif %}
+                {% if page.url == '/projects/slider/toward-the-right.html' %}
+                    {% include banner/right.html %}
+                {% endif %}
+                {% if page.url == '/projects/slider/toward-the-top.html' %}
+                    {% include banner/top.html %}
+                {% endif %}
+                {% if page.url == '/projects/slider/toward-the-bottom.html' %}
+                    {% include banner/bottom.html %}
+                {% endif %}
+            {% endif %}
 
-  <body>
-    {%- include header.html -%}
-    <div class="container-fluid">
-        <div class="row row-offcanvas row-offcanvas-right">
-            <div class="col-md-9 col-sm-12">
-            {{ content }}
-            </div>
-            <div class="col-md-3 col-sm-12 sidebar-offcanvas">
-                <a href="javascript:;" style="
-                position: absolute; left: -15%;
-                display:block;width: 3rem; height: 3rem;" data-toggle="offcanvas" id="toggle-offcanvas">
-                    <i class="fa fa-bars fa-lg"></i>
-                </a>
-
-                {% include banner/home.html %}
-            </div>
-        </div>      
-    </div>
-    {%- include footer.html -%}
-    
-  </body>
-
-</html>
+        </div>
+        <div class="col-md-9 col-sm-12">
+        {{ content }}
+        </div>
+    </div>      
+</div>
+{%- include footer.html -%}
